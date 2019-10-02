@@ -17,7 +17,6 @@ class CreatePatientsTable extends Migration
             $table->bigIncrements('id');
             $table->string('nom', 50);
             $table->string('prenom', 50);
-            $table->timestamps();
         });
     }
 

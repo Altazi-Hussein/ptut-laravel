@@ -21,4 +21,7 @@ Route::get('users', 'users@getInfos');
 Route::post('users', 'users@postInfos');
 Auth::routes();
 
+Route::get('patient', 'PatientController@getForm');
+Route::post('patient', ['uses' => 'PatientController@postForm', 'as' => 'storePatient']);
+
 Route::get('/home', 'HomeController@index')->name('home');
