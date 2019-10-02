@@ -13,9 +13,11 @@ class PatientSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('patients')->insert([
-            'nom' => Str::random(),
-            'prenom' => Str::random(),
-        ]);
+        for($i = 0; $i < 50; $i++){
+            DB::table('patients')->insert([
+                'nom' => Str::random(),
+                'prenom' => Str::random(),
+            ]);
+        }
     }
 }
