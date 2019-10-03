@@ -7,14 +7,6 @@ use App\Http\Requests\RdvRequest;
 
 class RdvController extends Controller
 {
-    public function postForm(RdvRequest $r){
-        $rdv = new Rdv;
-        $rdv->raison = $r->input('raison');
-        $rdv->patient = $r->input('patient');
-        $rdv->save();
-
-        return view('rdvAjoute');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -22,7 +14,8 @@ class RdvController extends Controller
      */
     public function index()
     {
-        //
+        $rdvs = Rdv::simplePaginate(20);
+        return view('rdv/index', ['rdvs' => $rdvs]);
     }
 
     /**
@@ -32,7 +25,7 @@ class RdvController extends Controller
      */
     public function create()
     {
-        return view('ajoutRdv');
+        return view('rdv/create');
     }
 
     /**
@@ -48,7 +41,7 @@ class RdvController extends Controller
         $rdv->patient = $r->input('patient');
         $rdv->save();
 
-        return view('rdvAjoute');
+        return view('rdv/store');
     }
 
     /**
