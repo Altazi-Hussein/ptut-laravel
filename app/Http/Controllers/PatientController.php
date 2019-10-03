@@ -18,6 +18,6 @@ class PatientController extends Controller
         $patient->save();
         
 
-        return view('patient_ok');
+        return view('patientAjoute');
     }
 }

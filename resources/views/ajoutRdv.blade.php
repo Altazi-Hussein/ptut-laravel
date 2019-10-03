@@ -1,9 +1,9 @@
 @extends('template')
 
 @section('contenu')
-            <div class="head">Ajouter patient</div>
+            <div class="head">Ajouter rdv</div>
             <div class="body">
-                {!! Form::open(['route' => 'patientAjoute']) !!}
+                {!! Form::open(['route' => 'rdvEnregistre']) !!}
                 
                 @if ($errors->any())
                     <div class="error">
@@ -15,8 +15,8 @@
                     </div>
                 @endif
                 <div class="form-group">
-                    {!! Form::text('nom', null, ['class' => 'form-control', 'placeholder' => 'Entre le nom du patient']) !!}
-                    {!! Form::text('prenom', null,['class' => 'form-control', 'placeholder' => 'Entre le prenom du patient']) !!}
+                    {!! Form::text('raison', null, ['class' => 'form-control', 'placeholder' => 'Entré le motif de rendez-vous']) !!}
+                    {!! Form::text('patient', null,['class' => 'form-control', 'placeholder' => 'Entré le nom du patient']) !!}
                 </div>
                 {!! Form::submit('Envoyer !' ) !!}
                 {!! Form::close() !!}
