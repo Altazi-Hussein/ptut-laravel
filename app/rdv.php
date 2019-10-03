@@ -8,4 +8,8 @@ class Rdv extends Model
 {
     protected $table = 'rdvs';
     protected $primaryKey = 'id';
+
+    protected $fillable = [
+        'raison', 'patient'
+    ];
 }
