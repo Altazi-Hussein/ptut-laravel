@@ -24,8 +24,8 @@ class RdvRequest extends FormRequest
     public function rules()
     {
         return [
-            'raison' => 'required',
-            'patient' => 'required',
+            'raison' => 'required|max:25',
+            'patient' => 'required|max:25',
         ];
     }
 }

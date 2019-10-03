@@ -3,7 +3,7 @@
 @section('contenu')
             <div class="head">Ajouter rdv</div>
             <div class="body">
-                {!! Form::open(['route' => 'rdvEnregistre']) !!}
+                {!! Form::open(['action' => 'RdvController@store']) !!}
                 
                 @if ($errors->any())
                     <div class="error">
