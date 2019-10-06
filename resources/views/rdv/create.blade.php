@@ -3,6 +3,7 @@
 @section('contenu')
             <div class="head">Ajouter rdv</div>
             <div class="body">
+                @if(Auth::check())
                 {!! Form::open(['action' => 'RdvController@store']) !!}
                 
                 @if ($errors->any())
@@ -20,7 +21,10 @@
                 </div>
                 {!! Form::submit('Envoyer !', ['class' => 'btn btn-success']) !!}
                 {!! Form::close() !!}
-
+                @else
+                    {{'Vous n\'êtes pas connecté !'}}
+                @endif
+                
                 <div class="footer">
                     <a href="/home"><input class="btn bg-primary p-2 mt-2 text-light" type="button" value="Retour">
                 </div>
