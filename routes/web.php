@@ -30,3 +30,5 @@ Route::post('ajoutRdv', ['uses' => 'RdvController@postForm', 'as' => 'rdvEnregis
 */
 Route::resource('rdv', 'RdvController');
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/calendrier', 'CalendrierController@show');

@@ -1,4 +1,4 @@
 @extends('template')
 @section('contenu')
-    gg bro
+    Patient Ajouté
 @endsection

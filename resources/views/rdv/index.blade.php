@@ -8,4 +8,5 @@
        </ul>
        {{ $rdvs->links()}}
     @endisset
+    <a href="/home"><input class="btn btn-success" type="button" value="Accueil"></a>
 @endsection
