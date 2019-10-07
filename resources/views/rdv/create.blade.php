@@ -26,7 +26,7 @@
                 @endif
                 
                 <div class="footer">
-                    <a href="/home"><input class="btn bg-primary p-2 mt-2 text-light" type="button" value="Retour">
+                    <a href="{{ route('home') }}"><input class="btn bg-primary p-2 mt-2 text-light" type="button" value="Retour">
                 </div>
             </div>
         </div>

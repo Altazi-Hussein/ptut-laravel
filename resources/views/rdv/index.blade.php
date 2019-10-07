@@ -4,7 +4,7 @@
     @isset($rdvs)
        <ul> 
         @foreach ($rdvs as $rdv)
-       <li>{{ $rdv }}</li>
+       <li>{{ $rdv }} <a href="{{ route('rdv.show', ['id'=>$rdv->id]) }}">Afficher</a></li>
         @endforeach
        </ul>
        {{ $rdvs->links()}}
@@ -12,5 +12,5 @@
     @else
        {{"Vous n'êtes pas connecté !"}}
     @endif
-    <a href="/home"><input class="btn btn-success" type="button" value="Accueil"></a>
+    <a href=" {{ route('home') }}"><input class="btn btn-success" type="button" value="Accueil"></a>
 @endsection

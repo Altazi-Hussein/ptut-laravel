@@ -52,7 +52,9 @@ class RdvController extends Controller
      */
     public function show($id)
     {
-        //
+        $rdv = Rdv::where('id', $id);
+
+        return view('rdv/show', ['rdv' => $rdv]);
     }
 
     /**
