@@ -10,9 +10,9 @@ class Patient extends Model
     protected $primaryKey = "id";
     public $timestamps = false;
 
-    public function getPatient(int $id){
-        return $this::where('id', $id)->first();
-    }
+    protected $fillable = [
+        'nom', 'prenom',
+    ];
 
     public function rdvs(){
         return $this->hasMany(\App\Rdv::class);
