@@ -31,3 +31,9 @@ Route::post('ajoutRdv', ['uses' => 'RdvController@postForm', 'as' => 'rdvEnregis
 Route::resource('rdv', 'RdvController');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('/calendrier', 'CalendrierController');
+
+Route::get('/test', function(){
+	$user = \App\User::first();
+	return $user->rdvs->first();
+}
+);

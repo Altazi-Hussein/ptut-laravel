@@ -10,7 +10,6 @@ class CalendrierController extends Controller
     public function index()
     {
         $rdvs = Rdv::all();
-        $patient = new \App\Patient;
-        return view('beta/calendrier', compact('rdvs','patient'));
+        return view('beta/calendrier', compact('rdvs'));
     }
 }
