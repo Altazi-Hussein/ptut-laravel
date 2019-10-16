@@ -16,8 +16,8 @@ class CreateRdvsTable extends Migration
         Schema::create('rdvs', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('raison',50);
-            $table->integer('patient_id')->unsigned()->nullable();
-            $table->integer('user_id')->unsigned()->nullable();
+            $table->unsignedBigInteger('patient_id')->nullable();
+            $table->unsignedBigInteger('user_id')->nullable();
 
             $table->datetime('start_time')->nullable();
             $table->datetime('finish_time')->nullable();
