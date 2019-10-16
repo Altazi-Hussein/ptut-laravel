@@ -10,6 +10,16 @@ class Rdv extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'raison', 'patient'
+        'raison', 'patient', 'commentaire',
     ];
+
+    public function patient()
+    {
+        return $this->belongsTo(\App\Patient::class);
+    }
+    
+    public function user()
+    {
+        return $this->belongsTo(\App\User::class);
+    }
 }

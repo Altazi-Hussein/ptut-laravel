@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Rdv;
 
 class CalendrierController extends Controller
 {
-    public function show()
+    public function index()
     {
-        return view('calendrier');
+        $rdvs = Rdv::all();
+        $patient = new \App\Patient;
+        return view('beta/calendrier', compact('rdvs','patient'));
     }
 }
