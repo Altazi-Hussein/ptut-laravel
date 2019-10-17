@@ -21,7 +21,7 @@
                 events : [
                     @foreach($rdvs as $rdv)
                     {
-                        title : '{{ $rdv->patient->nom . ' ' . $rdv->patient->prenom  }}',
+                        title : '{{ $rdv->patient->firstName . ' ' . $rdv->patient->lastName  }}',
                         start : '{{ $rdv->start_time }}',
                     },
                     @endforeach

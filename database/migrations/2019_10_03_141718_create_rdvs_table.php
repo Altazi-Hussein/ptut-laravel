@@ -15,13 +15,13 @@ class CreateRdvsTable extends Migration
     {
         Schema::create('rdvs', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('raison',50);
+            $table->string('reason',50);
             $table->unsignedBigInteger('patient_id')->nullable();
             $table->unsignedBigInteger('user_id')->nullable();
 
             $table->datetime('start_time')->nullable();
             $table->datetime('finish_time')->nullable();
-            $table->text('commentaire')->nullable();
+            $table->text('comment')->nullable();
 
             $table->foreign('patient_id')->references('id')->on('patients')->ondelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->ondelete('cascade');

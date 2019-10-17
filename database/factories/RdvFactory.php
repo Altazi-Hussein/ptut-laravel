@@ -12,6 +12,6 @@ $factory->define(App\Rdv::class, function () {
         'user_id' => App\User::inRandomOrder()->first()->id,
         'start_time' => $start_time->format('Y-m-d H') . ':00',
         'finish_time' => $start_time->addHours(rand(1, 2))->format('Y-m-d H') . ':00',
-        'raison' => Str::random(5)
+        'reason' => Str::random(5)
     ];
 });

@@ -11,7 +11,7 @@ class Patient extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'nom', 'prenom',
+        'firstName', 'lastName',
     ];
 
     public function rdvs(){
