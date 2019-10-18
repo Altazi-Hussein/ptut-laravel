@@ -12,4 +12,11 @@ class CalendrierController extends Controller
         $rdvs = Rdv::all();
         return view('beta/calendrier', compact('rdvs'));
     }
+    public function ajaxUpdate(Request $request)
+    {
+        $rdv = Rdv::with('patient')->findOrFail($request->rdv);
+        $rdv->update($request->all());
+
+        return response()->json(['rdv' => $rdv]);
+    }
 }

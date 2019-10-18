@@ -13,10 +13,6 @@
 
 Route::get('/', 'Controller@index');
 
-/*Route::get('{n}', function($n) {
-	return response('Je suis la page ' . $n . ' !', 200); 
-});*/
-Route::get('/bonjour/{n}', 'article@show')->where('n', '[0-9]+');
 Route::get('users', 'users@getInfos');
 Route::post('users', 'users@postInfos');
 Auth::routes();
@@ -30,7 +26,10 @@ Route::post('ajoutRdv', ['uses' => 'RdvController@postForm', 'as' => 'rdvEnregis
 */
 Route::resource('rdv', 'RdvController');
 Route::get('/home', 'HomeController@index')->name('home');
+
+//calendar
 Route::resource('/calendrier', 'CalendrierController');
+Route::post('calendrier_ajax_update', ['uses' => 'CalendrierController@ajaxUpdate', 'as' => 'calendrier.ajax_update']);
 
 Route::get('/test', function(){
 	$user = \App\User::first();

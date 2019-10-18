@@ -19,22 +19,51 @@
                 defaultView: 'agendaWeek',
                 events: [
                     @foreach($rdvs as $rdv) {
+                        id: '{{ $rdv->id }}',
                         title: '{{ $rdv->patient->firstName . ' ' . $rdv->patient->lastName  }}',
                         start: '{{ $rdv->start_time }}',
+                        @isset($rdv->finish_time)
+                            end: '{{ $rdv->finish_time }}',
+                        @endisset
                     },
                     @endforeach
                 ],
                 eventClick: function (calEvent, jsEvent, view) {
+                    $('#event_id').val(calEvent._id);
+                    $('#rdv_id').val(calEvent.id);
                     $('#start_time').val(moment(calEvent.start).format('YYYY-MM-DD HH:mm:ss'));
                     $('#finish_time').val(moment(calEvent.end).format('YYYY-MM-DD HH:mm:ss'));
                     $('#editModal').modal();
                 }
+            });
+            $('#appointment_update').click(function(e) {
+                e.preventDefault();
+                var data = {
+                    _token: '{{ csrf_token() }}',
+                    rdv_id: $('#rdv_id').val(),
+                    start_time: $('#start_time').val(),
+                    finish_time: $('#finish_time').val(),
+                };
+
+                $.post('{{ route('calendrier.ajax_update') }}', data, function( result ) {
+                    $('#calendar').fullCalendar('removeEvents', $('#event_id').val());
+
+                    $('#calendar').fullCalendar('renderEvent', {
+                        title: result.rdv.client.firstName + ' ' + result.rdv.client.lastName,
+                        start: result.rdv.start_time,
+                        end: result.rdv.finish_time
+                    }, true);
+
+                    $('#editModal').modal('hide');
+                });
             });
         });
     </script>
     <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
+                    <input type="hidden" name="event_id" id="event_id" value="" />
+                    <input type="hidden" name="rdv_id" id="rdv_id" value="" />
                     <div class="modal-body">
                         <h4>Edit Appointment</h4>
     
