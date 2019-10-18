@@ -1,5 +1,5 @@
 @extends('template')
-@section('contenu')
+@section('body')
     @if(Auth::check())
     @isset($rdv)
        {{ $rdv }}

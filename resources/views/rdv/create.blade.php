@@ -1,6 +1,6 @@
 @extends('template')
 
-@section('contenu')
+@section('body')
             <div class="head">Ajouter rdv</div>
             <div class="body">
                 @if(Auth::check())
