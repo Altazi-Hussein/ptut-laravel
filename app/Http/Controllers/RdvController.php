@@ -52,9 +52,7 @@ class RdvController extends Controller
      */
     public function show($id)
     {
-        $rdv = Rdv::where('id', $id);
-
-        return view('rdv/show', ['rdv' => $rdv]);
+        return view('rdv.show', ['rdv' => Rdv::findOrFail($id)]);
     }
 
     /**
@@ -65,7 +63,8 @@ class RdvController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('rdv.edit', ['rdv' => Rdv::findOrFail($id)] ) //Vue a faire plus tard 
+
     }
 
     /**
@@ -77,7 +76,7 @@ class RdvController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
     }
 
     /**
