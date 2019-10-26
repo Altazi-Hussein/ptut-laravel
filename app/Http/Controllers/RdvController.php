@@ -3,7 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Rdv;
+use App\Patient;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Http\Request;
 use App\Http\Requests\RdvRequest;
+
+
 
 class RdvController extends Controller
 {
@@ -23,9 +29,20 @@ class RdvController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $requestMethodePatient)
     {
-        return view('rdv/create');
+        $patients = DB::select('select * from Patients');
+        $names = [];
+        foreach($patients as $patient)
+        {
+            $names[$patient->id] = $patient->lastName;
+        }
+        
+        $methode = $requestMethodePatient->input('methodeChoixPatient');
+        var_dump($methode);
+        
+        
+        return view('rdv/create', ['names' => $names, 'methode'=> $methode ]);
     }
 
     /**
@@ -63,7 +80,7 @@ class RdvController extends Controller
      */
     public function edit($id)
     {
-        return view('rdv.edit', ['rdv' => Rdv::findOrFail($id)] ) //Vue a faire plus tard 
+        return view('rdv.edit', ['rdv' => Rdv::findOrFail($id)] ); //Vue a faire plus tard 
 
     }
 
