@@ -24,7 +24,15 @@ Route::post('patient', ['uses' => 'PatientController@postForm', 'as' => 'patient
 Route::get('ajoutRdv', 'RdvController@getForm');
 Route::post('ajoutRdv', ['uses' => 'RdvController@postForm', 'as' => 'rdvEnregistre']);
 */
+
+
+Route::get('rdv/createSelection', 'RdvController@createSelection');
+Route::get('rdv/createCreation', 'RdvController@createCreation');
 Route::resource('rdv', 'RdvController');
+Route::post('rdv/storeSelection', 'RdvController@storeSelection');
+Route::post('rdv/storeCreation', 'RdvController@storeCreation');
+
+Route::get('rdv/storeResultat', 'RdvController@storeResultat');
 Route::get('/home', 'HomeController@index')->name('home');
 
 //calendar

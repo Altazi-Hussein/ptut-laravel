@@ -31,34 +31,58 @@ class RdvController extends Controller
      */
     public function create(Request $requestMethodePatient)
     {
+        return view('rdv/create');
+    }
+
+    public function createSelection()
+    {
         $patients = DB::select('select * from Patients');
         $names = [];
         foreach($patients as $patient)
         {
             $names[$patient->id] = $patient->lastName;
         }
-        
-        $methode = $requestMethodePatient->input('methodeChoixPatient');
-        var_dump($methode);
-        
-        
-        return view('rdv/create', ['names' => $names, 'methode'=> $methode ]);
+
+        return view('rdv/createSelection', ['names' => $names]);
     }
 
+    public function createCreation()
+    {
+        return view('rdv/createCreation');
+    }
     /**
      * Store a newly created resource in storage.
      *
      * @param  App\Http\Requests\RdvRequest  $r
      * @return \Illuminate\Http\Response
      */
-    public function store(RdvRequest $r)
+    public function storeSelection(RdvRequest $r)
     {
         $rdv = new Rdv;
+        $rdv->reason = $r->input('raison');
+        $rdv->patient_id =$r->input('patient'); 
+        $rdv->save();
+
+        return view('rdv/storeResultat');
+    }
+
+    public function storeCreation(RdvRequest $r)
+    {
+        $rdv = new Rdv;
+        $patient = new Patient;
+        $patient->lastname = $r->input('lastName');
+        $patient->firstname = $r->input('firstName');
+        $patient->save(); 
         $rdv->raison = $r->input('raison');
-        $rdv->patient = $r->input('patient');
+        
         $rdv->save();
 
         return view('rdv/store');
+    }
+
+    public function storeResultat()
+    {
+        return view('rdv/storeResultat');
     }
 
     /**
