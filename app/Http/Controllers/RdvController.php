@@ -33,7 +33,8 @@ class RdvController extends Controller
     {
         return view('rdv/create');
     }
-
+    
+    //Formulaire de création d'un RDV via un patient existant
     public function createSelection()
     {
         $patients = DB::select('select * from Patients');
@@ -46,16 +47,13 @@ class RdvController extends Controller
         return view('rdv/createSelection', ['names' => $names]);
     }
 
+    //Formulaire de création de RDV via un nouveau patient
     public function createCreation()
     {
         return view('rdv/createCreation');
     }
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  App\Http\Requests\RdvRequest  $r
-     * @return \Illuminate\Http\Response
-     */
+    
+    //Création d'un nouveau RDV via un patient existant
     public function storeSelection(RdvRequest $r)
     {
         $rdv = new Rdv;
@@ -66,6 +64,7 @@ class RdvController extends Controller
         return view('rdv/storeResultat');
     }
 
+    //Creation d'un nouveau RDV via un nouveau patient
     public function storeCreation(RdvRequest $r)
     {
         $rdv = new Rdv;
@@ -74,6 +73,7 @@ class RdvController extends Controller
         $patient->firstname = $r->input('firstName');
         $patient->save(); 
         $rdv->raison = $r->input('raison');
+        $rdv->patient_id = $patient->id;
         
         $rdv->save();
 
