@@ -6,8 +6,8 @@
             <div class="body">
                 @if(Auth::check())
                     <!-- choix de l'option : choisir un patient existant ou en créer un nouveau -->
-                    <a href= {{url('rdv/createSelection')}}> Selectionner un patient existant </a>
-                    <a href={{url('rdv/createCreation')}}> Créer un nouveau patient </a>
+                    <a href= {{url('rdv/createSelection')}}><input class="btn btn-success p-3 mt-2" type="button" value="Selectionner un patient existant"></a>
+                    <a href={{url('rdv/createCreation')}}><input class="btn btn-success p-3 mt-2" type="button" value="Créer un nouveau patient"></a>
                 
                 @else
                     {{'Vous n\'êtes pas connecté !'}}

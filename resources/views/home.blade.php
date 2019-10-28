@@ -14,8 +14,8 @@
                         </div>
                     @endif
                     <form action="home" method="POST">
-                        <input class="btn btn-success p-3 " type="submit" value="Ajouter" name="patient">
-                    </form>
+                    <!--<input class="btn btn-success p-3 " type="submit" value="Ajouter" name="patient">
+                    </form>-->
                     <a href="{{url('rdv/create')}}"><input class="btn btn-success p-3 mt-2" type="button" value="Ajouter un rendez-vous"></a>
                     <a href="{{url('calendrier')}}"><input class="btn btn-success p-3 mt-2 d-block" type="button" value="Accéder au calendrier"></a>
                     <a href="{{url('rdv')}}"><input class="btn btn-success p-3 mt-2 d-block" type="button" value="Voir liste des rendez-vous"></a>
