@@ -4,13 +4,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" 
     integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js'></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
         
     <link href='https://unpkg.com/@fullcalendar/core@4.3.1/main.min.css' rel='stylesheet' />
     <link href='https://unpkg.com/@fullcalendar/daygrid@4.3.0/main.min.css' rel='stylesheet' />
+    <link href='https://unpkg.com/@fullcalendar/timegrid@4.3.0/main.min.css' rel='stylesheet' />
 
     <script src='https://unpkg.com/@fullcalendar/core@4.3.1/main.min.js'></script>
     <script src='https://unpkg.com/@fullcalendar/daygrid@4.3.0/main.min.js'></script>
     <script src='https://unpkg.com/@fullcalendar/interaction@4.3.0/main.min.js'></script>
+    <script src='https://unpkg.com/@fullcalendar/timegrid@4.3.0/main.min.js'></script>
 
     @endsection
 
@@ -20,13 +23,22 @@
          document.addEventListener('DOMContentLoaded', function() {
             var calendarEl = document.getElementById('calendar');
             var calendar = new FullCalendar.Calendar(calendarEl, {
-            plugins: [ 'interaction', 'dayGrid' ],
+            plugins: [ 'interaction', 'timeGrid' ],
             timeZone: 'UTC',
-            defaultView: 'dayGridWeek',
+            minTime: "8:00",
+            maxTime: "18:00",
+            defaultView: 'timeGridFourDay',
             header: {
                 left: 'prev,next',
                 center: 'title',
                 right: 'dayGridDay,dayGridWeek'
+            },
+            views: {
+                timeGridFourDay: {
+                type: 'timeGrid',
+                duration: { days: 4 },
+                buttonText: '4 day'
+                }
             },
             editable: true,
             events: [
@@ -40,14 +52,14 @@
                     },
                     @endforeach
                 ],
-                eventClick: function (calEvent, jsEvent, view) {
-                    $('#event_id').val(calEvent._id);
-                    $('#rdv_id').val(calEvent.id);
-                    $('#start_time').val(moment(calEvent.start).format('YYYY-MM-DD HH:mm:ss'));
-                    $('#finish_time').val(moment(calEvent.end).format('YYYY-MM-DD HH:mm:ss'));
-                    $('#editModal').modal();
+                eventClick: function (info) {
+                    $('#event_id').val(info.event.id);
+                    $('#titleModal').text(info.event.title);
+                    $('#start_time').val(moment(info.event.start).format('YYYY-MM-DD HH:mm:ss'));
+                    $('#editModal').modal('show');
                 }
             });
+            /*
             $('#appointment_update').click(function(e) {
                 e.preventDefault();
                 var data = {
@@ -68,7 +80,8 @@
 
                     $('#editModal').modal('hide');
                 });
-            });
+                
+            });*/
             calendar.render();
         });
     </script>
@@ -78,7 +91,7 @@
                     <input type="hidden" name="event_id" id="event_id" value="" />
                     <input type="hidden" name="rdv_id" id="rdv_id" value="" />
                     <div class="modal-body">
-                        <h4>Edit Appointment</h4>
+                        <h4>Edit Appointment</h4><h3 id="titleModal"></h3>
     
                         Start time:
                         <br />

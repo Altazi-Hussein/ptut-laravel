@@ -1,7 +1,7 @@
-@extends('template')
+{{--@extends('template')--}}
+@extends('layouts.app')
 
-
-@section('body')
+@section('content')
             <div class="head">Ajouter rdv</div>
             <div class="body">
                 @if(Auth::check())

@@ -1,5 +1,7 @@
-@extends('template')
-@section('body')
+{{--@extends('template')--}}
+@extends('layouts.app')
+
+@section('content')
     <div class="head">Ajouter rdv</div>
     <div class="body">
         @if(Auth::check())
@@ -12,3 +14,4 @@
             {!! Form::close() !!}
         @endif    
     </div>
+    @endsection
