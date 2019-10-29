@@ -20,9 +20,13 @@
 
 @section('content')
 <div class="card-body" style="">
-        <a href=" {{ route('home') }}"><input class="btn btn-success float-right" type="button" value="Accueil"></a>
+        <a href=" {{ route('home') }}">
+            <input class="btn btn-success float-right" type="button" value="Accueil">
+        </a>
     <div id='calendar'></div>
     <script>
+        var modifiable = true;
+
          document.addEventListener('DOMContentLoaded', function() {
             var calendarEl = document.getElementById('calendar');
             var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -39,11 +43,11 @@
             views: {
                 timeGridFourDay: {
                 type: 'timeGrid',
-                duration: { days: 4 },
-                buttonText: '4 day'
+                duration: { days: 7 },
+                buttonText: '7 day'
                 }
             },
-            editable: true,
+            editable: modifiable,
             events: [
                     @foreach($rdvs as $rdv) {
                         id: '{{ $rdv->id }}',
