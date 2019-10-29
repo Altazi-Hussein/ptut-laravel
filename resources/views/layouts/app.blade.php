@@ -16,7 +16,7 @@
     <!-- Styles -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
-<body>
+<body style="background-image: url({{asset('images/background.jpg')}}); background-size: cover;">
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
@@ -70,7 +70,15 @@
         </nav>
 
         <main class="py-4">
-            @yield('content')
+                <div class="row justify-content-center">
+                        <div class="col-md-8 row justify-content-center">
+                        <div class="card">
+                        <div class="card-header" style="background: #e7e6ff; box-shadow: 0px 2px 5px grey;">@yield('titleContent')</div>
+                        @yield('content')
+                        </div>
+                        </div>
+                </div>
+            </div>
         </main>
     </div>
 </body>

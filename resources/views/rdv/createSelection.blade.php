@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
+@section('titleContent', 'Ajouter un rendez-vous')
 
 @section('content')
-    <div class="head">Ajouter rdv</div>
-    <div class="body">
+<div class="card-body" style="">
         @if(Auth::check())
             {!! Form::open(['action' => 'RdvController@storeSelection']) !!}
             {!! Form::text('raison', null, ['class' => 'form-control w-25', 'placeholder' => 'Entrez le motif de rendez-vous']) !!}
@@ -22,5 +22,5 @@
                 </ul>
             </div>
         @endif
-    </div> 
+</div> 
 @endsection
