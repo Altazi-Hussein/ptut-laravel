@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'Controller@index');
+Route::get('/welcome', 'Controller@index');
 
 Route::get('users', 'users@getInfos');
 Route::post('users', 'users@postInfos');
