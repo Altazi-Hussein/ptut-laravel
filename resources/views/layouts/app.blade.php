@@ -72,7 +72,7 @@
         <main class="py-4">
                 <div class="row justify-content-center">
                         <div class="col-md-8 row justify-content-center">
-                        <div class="card">
+                        <div class="card" style="min-width: 30vw;">
                         <div class="card-header" style="background: #e7e6ff; box-shadow: 0px 2px 5px grey;">@yield('titleContent')</div>
                         @yield('content')
                         </div>

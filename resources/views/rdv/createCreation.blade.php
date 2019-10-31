@@ -7,12 +7,18 @@
 <div class="card-body" style="">
         @if(Auth::check())
             {!! Form::open(['action' => 'RdvController@storeCreation']) !!}
-                {!! Form::text('raison', null, ['class' => 'form-control w-25', 'placeholder' => 'Entrez le motif de rendez-vous']) !!}
-                <p> Ajout du patient </p>
-                {!! Form::text('lastName', null, ['class' => 'form-control w-25', 'placeholder' => 'Entrez le nom de famille du patient']) !!}
-                {!! Form::text('firstName', null, ['class' => 'form-control w-25', 'placeholder' => 'Entrez le prénom du patient']) !!} 
-                {!! Form::submit('Envoyer !', ['class' => 'btn btn-success']) !!}
+                <label class="col-form-label text-md-right mb-2" for="raison">
+                    {{ __('Motif du rendez-vous') }}
+                </label>
+                {!! Form::text('raison', null, ['class' => 'form-control mb-2', 'placeholder' => 'Motif de rendez-vous', 'id' => 'raison']) !!}
+                <label class="col-form-label text-md-right mb-2" for="patient">
+                    {{ __('Ajout du patient') }}
+                </label>
+                {!! Form::text('lastName', null, ['class' => 'form-control mb-2', 'placeholder' => 'Nom de famille du patient', 'id' => 'patient']) !!}
+                {!! Form::text('firstName', null, ['class' => 'form-control mb-2', 'placeholder' => 'Prénom du patient']) !!} 
+                {!! Form::submit('Envoyer !', ['class' => 'btn btn-success mt-2']) !!}
             {!! Form::close() !!}
-        @endif    
+        @endif
 </div>
+<a class="btn btn-primary float-left mt-1" href="{{ route('rdv.create') }}">Retour</a>
 @endsection

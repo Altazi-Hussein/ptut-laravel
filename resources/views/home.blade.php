@@ -13,5 +13,6 @@
             <a class="btn btn-success p-3 mt-2" href="{{url('rdv/create')}}"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Ajouter un rendez-vous</a>
             <a class="btn btn-success p-3 mt-2" href="{{url('calendrier')}}">Accéder au calendrier</a>
             <a class="btn btn-success p-3 mt-2" href="{{url('rdv')}}">Voir liste des rendez-vous</a>
+        </form>
 </div>
 @endsection

@@ -6,13 +6,22 @@
 <div class="card-body" style="">
         @if(Auth::check())
             {!! Form::open(['action' => 'RdvController@storeSelection']) !!}
-            {!! Form::text('raison', null, ['class' => 'form-control', 'placeholder' => 'Motif du rendez-vous']) !!}
-                {{--<p> Sélectionnez le patient </p> --}}
-                <br>
-                {!! Form::select('patient', $names)  !!}
-                <br><br>
-                <a class="btn btn-primary float-left" href="{{ route('home') }}">Accueil</a>
-                {!! Form::submit('Envoyer !', ['class' => 'btn btn-success float-right']) !!}
+
+            <label class="col-form-label text-md-right mb-2" for="raison">
+                {{ __('Motif du rendez-vous') }}
+            </label>
+            {!! Form::text('raison', null, ['class' => 'form-control mb-2', 'placeholder' => 'Motif du rendez-vous', 'id' => 'raison']) !!}
+              
+            <label class="col-form-label text-md-right mb-2" for="patient">
+                {{ __('Sélection du patient') }}
+            </label>
+            {{-- {!! Form::select('patient', $names, ['class' => 'form-control mb-2', 'id'=>'patient'])  !!} --}}
+            <select id="patient" class="form-control mb-2">
+                @foreach($names as $name)
+                    <option>{{$name}}</option>
+                @endforeach
+              </select>
+            {!! Form::submit('Envoyer !', ['class' => 'btn btn-success mt-2']) !!}
             {!! Form::close() !!}
         @endif
         
@@ -25,5 +34,6 @@
                 </ul>
             </div>
         @endif
-</div> 
+</div>
+<a class="btn btn-primary float-left" href="{{ route('rdv.create') }}">Retour</a>
 @endsection

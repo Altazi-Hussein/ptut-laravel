@@ -12,7 +12,7 @@
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
                         <div class="form-group column">
-                            <label for="email" class=" col-form-label text-md-right">{{ __('Adresse mail') }}</label>
+                            <label for="email" class="col-form-label text-md-right">{{ __('Adresse mail') }}</label>
 
                             <div class="{{-- col-md-6 --}}">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>

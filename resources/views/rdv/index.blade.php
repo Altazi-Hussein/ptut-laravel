@@ -34,7 +34,7 @@
                </tbody>
             </thead>
          </table>
-         <a class="btn btn-success float-left" href="{{ route('home') }}">Accueil</a>
+         <a class="btn btn-primary float-left" href="{{ route('home') }}">Retour</a>
          <div class="float-right">{{ $rdvs->links()}}</div>
        {{--<ul> 
         @foreach ($rdvs as $rdv)
