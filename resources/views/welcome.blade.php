@@ -12,8 +12,9 @@
         <!-- Styles -->
         <style>
             html, body {
-                background: #fff;
-                color: #636b6f;
+                background-image: url( {{ asset('images/background.jpg') }} );
+                background-size: cover;
+                color: black;
                 font-family: 'Nunito', sans-serif;
                 font-weight: 200;
                 height: 100vh;
@@ -49,13 +50,17 @@
             }
 
             .links > a {
-                color: #636b6f;
                 padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
+                font-size: 3vh;
+                font-weight: 400;
                 letter-spacing: .1rem;
                 text-decoration: none;
                 text-transform: uppercase;
+            }
+
+            .login
+            {
+                
             }
 
             .m-b-md {
@@ -66,24 +71,35 @@
     <body>
         <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
-                <div class="top-right links">
+                {{--<div class="top-right links">
                     @auth
-                        <a href="{{ url('/home') }}">Home</a>
+                        <a href="{{ url('/home') }}">Accueil</a>
                     @else
-                        <a href="{{ route('login') }}">Login</a>
+                        <a href="{{ route('login') }}">Connexion</a>
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
+                            <a href="{{ route('register') }}">Inscription</a>
                         @endif
                     @endauth
-                </div>
+                </div>--}}
             @endif
 
             <div class="content">
                 <div class="title m-b-md">
-                    Bonjour
+                    Bienvenue
                 </div>
+            <div class="links">
+                @auth
+                        {{--<a href="{{ url('/home') }}">Accueil</a>--}}
+                    @else
+                        <a style="background:#28a745; color:white; padding:10px; 
+                        border-radius: 5px; margin: 10px;" class="login" href="{{ route('login') }}">Connexion</a>
 
+                        @if (Route::has('register'))
+                            <a style="background:#007bff; color:white; padding:10px; border-radius: 5px; margin: 10px;" href="{{ route('register') }}">Inscription</a>
+                        @endif
+                    @endauth
+            </div>
                 <!--<div class="links">
                     <a href="https://laravel.com/docs">Docs</a>
                     <a href="https://laracasts.com">Laracasts</a>

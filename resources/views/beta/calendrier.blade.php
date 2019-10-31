@@ -14,12 +14,19 @@
     <script src='https://unpkg.com/@fullcalendar/daygrid@4.3.0/main.min.js'></script>
     <script src='https://unpkg.com/@fullcalendar/interaction@4.3.0/main.min.js'></script>
     <script src='https://unpkg.com/@fullcalendar/timegrid@4.3.0/main.min.js'></script>
+@endsection
 
-    @endsection
+@section('titleContent', 'Calendrier')
 
 @section('content')
+<div class="card-body" style="">
+        <a href=" {{ route('home') }}">
+            <input class="btn btn-success float-right" type="button" value="Accueil">
+        </a>
     <div id='calendar'></div>
     <script>
+        var modifiable = true;
+
          document.addEventListener('DOMContentLoaded', function() {
             var calendarEl = document.getElementById('calendar');
             var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -36,11 +43,11 @@
             views: {
                 timeGridFourDay: {
                 type: 'timeGrid',
-                duration: { days: 4 },
-                buttonText: '4 day'
+                duration: { days: 7 },
+                buttonText: '7 day'
                 }
             },
-            editable: true,
+            editable: modifiable,
             events: [
                     @foreach($rdvs as $rdv) {
                         id: '{{ $rdv->id }}',
@@ -109,6 +116,7 @@
                 </div>
             </div>
     </div>
+</div>
 @endsection
 
 {{--

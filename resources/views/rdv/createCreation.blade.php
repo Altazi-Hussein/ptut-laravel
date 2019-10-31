@@ -1,9 +1,10 @@
 {{--@extends('template')--}}
 @extends('layouts.app')
 
+@section('titleContent', 'Ajouter un rendez-vous')
+
 @section('content')
-    <div class="head">Ajouter rdv</div>
-    <div class="body">
+<div class="card-body" style="">
         @if(Auth::check())
             {!! Form::open(['action' => 'RdvController@storeCreation']) !!}
                 {!! Form::text('raison', null, ['class' => 'form-control w-25', 'placeholder' => 'Entrez le motif de rendez-vous']) !!}
@@ -12,6 +13,7 @@
                 {!! Form::text('firstName', null, ['class' => 'form-control w-25', 'placeholder' => 'Entrez le prénom du patient']) !!} 
                 {!! Form::submit('Envoyer !', ['class' => 'btn btn-success']) !!}
             {!! Form::close() !!}
+<<<<<<< HEAD
         @endif
         @if ($errors->any())
             <div class="error">
@@ -25,3 +27,8 @@
             
     </div>
     @endsection
+=======
+        @endif    
+</div>
+@endsection
+>>>>>>> 62964a9e5bfc832e60ffda7bba48dd7af8adea98
