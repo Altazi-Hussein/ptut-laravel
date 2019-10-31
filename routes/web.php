@@ -45,3 +45,8 @@ Route::get('/test', function(){
 	return $user->rdvs->first();
 }
 );
+
+Route::get('/nonConnecte', function()
+{
+	return view('nonConnecte');
+});

@@ -7,5 +7,5 @@
     @else
        {{"Vous n'êtes pas connecté !"}}
     @endif
-    <a href="{{ url('home') }}"><input class="btn btn-success" type="button" value="Accueil"></a>
+    <a class="btn btn-success" href="{{ url('home') }}">Accueil</a>
 @endsection

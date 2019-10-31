@@ -3,8 +3,26 @@
 @section('titleContent', 'Ajouter un rendez-vous')
 
 @section('content')
+@if ($errors->any())
+    <div class="error">
+        <ul class="bg-danger text-light list-unstyled">
+            @foreach ($errors->all() as $item)
+                <li class="text-center">{{ $item }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 <div class="card-body" style="">
         @if(Auth::check())
+            {{-- @if ($errors->any())
+            <div class="error">
+                <ul>
+                    @foreach ($errors->all() as $item)
+                        <p class="bg-danger text-light">{{ $item }}</p>
+                    @endforeach
+                </ul>
+            </div>
+            @endif --}}
             {!! Form::open(['action' => 'RdvController@storeSelection']) !!}
 
             <label class="col-form-label text-md-right mb-2" for="raison">
@@ -21,18 +39,8 @@
                     <option>{{$name}}</option>
                 @endforeach
               </select>
-            {!! Form::submit('Envoyer !', ['class' => 'btn btn-success mt-2']) !!}
+            {!! Form::submit('Ajouter', ['class' => 'btn btn-success mt-2 float-right']) !!}
             {!! Form::close() !!}
-        @endif
-        
-        @if ($errors->any())
-            <div class="error">
-                <ul>
-                    @foreach ($errors->all() as $item)
-                        <li>{{ $item }}</li>
-                    @endforeach
-                </ul>
-            </div>
         @endif
 </div>
 <a class="btn btn-primary float-left" href="{{ route('rdv.create') }}">Retour</a>
