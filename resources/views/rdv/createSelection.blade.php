@@ -34,9 +34,9 @@
                 {{ __('Sélection du patient') }}
             </label>
             {{-- {!! Form::select('patient', $names, ['class' => 'form-control mb-2', 'id'=>'patient'])  !!} --}}
-            <select id="patient" class="form-control mb-2">
-                @foreach($names as $name)
-                    <option>{{$name}}</option>
+            <select name="patient" class="form-control mb-2">
+                @foreach($patients as $patient)
+                <option value="{{ $patient->id }}">{{$patient->firstName}} {{ $patient->lastName}}</option>
                 @endforeach
               </select>
             {!! Form::submit('Ajouter', ['class' => 'btn btn-success mt-2 float-right']) !!}
