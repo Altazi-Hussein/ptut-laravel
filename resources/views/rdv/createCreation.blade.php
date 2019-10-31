@@ -31,4 +31,5 @@
         @endif
             
     </div>
+    <a class="btn btn-primary float-left" href="{{ route('rdv.create') }}">Retour</a>
     @endsection
