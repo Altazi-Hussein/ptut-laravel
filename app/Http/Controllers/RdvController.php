@@ -37,14 +37,9 @@ class RdvController extends Controller
     //Formulaire de création d'un RDV via un patient existant
     public function createSelection()
     {
-        $patients = DB::select('select * from Patients');
-        $names = [];
-        foreach($patients as $patient)
-        {
-            $names[$patient->id] = $patient->lastName;
-        }
+        $patients = Patient::all();
 
-        return view('rdv/createSelection', ['names' => $names]);
+        return view('rdv/createSelection', ['patients' => $patients]);
     }
 
     //Formulaire de création de RDV via un nouveau patient

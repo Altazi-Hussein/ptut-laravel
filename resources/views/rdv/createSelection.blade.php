@@ -17,8 +17,8 @@
             </label>
             {{-- {!! Form::select('patient', $names, ['class' => 'form-control mb-2', 'id'=>'patient'])  !!} --}}
             <select id="patient" class="form-control mb-2">
-                @foreach($names as $name)
-                    <option>{{$name}}</option>
+                @foreach($patients as $patient)
+                <option value="{{ $patient->id }}">{{$patient->firstName}} {{ $patient->lastName}}</option>
                 @endforeach
               </select>
             {!! Form::submit('Envoyer !', ['class' => 'btn btn-success mt-2']) !!}
