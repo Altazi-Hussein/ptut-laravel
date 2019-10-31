@@ -25,20 +25,28 @@
             @endif --}}
             {!! Form::open(['action' => 'RdvController@storeSelection']) !!}
 
+            <label class="col-form-label text-md-right mb-2" for="patient">
+                    {{ __('Sélection du patient') }}
+                </label>
+                {{-- {!! Form::select('patient', $names, ['class' => 'form-control mb-2', 'id'=>'patient'])  !!} --}}
+                <select name="patient" class="form-control mb-2">
+                    @foreach($patients as $patient)
+                    <option value="{{ $patient->id }}">{{$patient->firstName}} {{ $patient->lastName}}</option>
+                    @endforeach
+                  </select>
+
+
             <label class="col-form-label text-md-right mb-2" for="raison">
                 {{ __('Motif du rendez-vous') }}
             </label>
             {!! Form::text('raison', null, ['class' => 'form-control mb-2', 'placeholder' => 'Motif du rendez-vous', 'id' => 'raison']) !!}
-              
-            <label class="col-form-label text-md-right mb-2" for="patient">
-                {{ __('Sélection du patient') }}
+
+            <label class="col-form-label text-md-right mb-2" for="date">
+                    {{ __('Date du rendez-vous') }}
             </label>
-            {{-- {!! Form::select('patient', $names, ['class' => 'form-control mb-2', 'id'=>'patient'])  !!} --}}
-            <select name="patient" class="form-control mb-2">
-                @foreach($patients as $patient)
-                <option value="{{ $patient->id }}">{{$patient->firstName}} {{ $patient->lastName}}</option>
-                @endforeach
-              </select>
+            {!! Form::date('started_at', null, ['class' => 'form-control mb-2', 'id' => 'date']) !!}
+
+            {!! Form::submit('Ajouter', ['class' => 'btn btn-success mt-2 float-right']) !!}
             {!! Form::submit('Ajouter', ['class' => 'btn btn-success mt-2 float-right']) !!}
             {!! Form::close() !!}
         @endif

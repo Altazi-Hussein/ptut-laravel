@@ -58,11 +58,6 @@
                 text-transform: uppercase;
             }
 
-            .login
-            {
-                
-            }
-
             .m-b-md {
                 margin-bottom: 30px;
             }
@@ -93,7 +88,7 @@
                         {{--<a href="{{ url('/home') }}">Accueil</a>--}}
                     @else
                         <a style="background:#28a745; color:white; padding:10px; 
-                        border-radius: 5px; margin: 10px;" class="login" href="{{ route('login') }}">Connexion</a>
+                        border-radius: 5px; margin: 10px;" href="{{ route('login') }}">Connexion</a>
 
                         @if (Route::has('register'))
                             <a style="background:#007bff; color:white; padding:10px; border-radius: 5px; margin: 10px;" href="{{ route('register') }}">Inscription</a>
