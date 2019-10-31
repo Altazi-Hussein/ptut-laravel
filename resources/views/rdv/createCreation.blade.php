@@ -19,6 +19,16 @@
                 {!! Form::submit('Envoyer !', ['class' => 'btn btn-success mt-2']) !!}
             {!! Form::close() !!}
         @endif
-</div>
-<a class="btn btn-primary float-left mt-1" href="{{ route('rdv.create') }}">Retour</a>
-@endsection
+
+        @if ($errors->any())
+            <div class="error">
+                <ul>
+                    @foreach ($errors->all() as $item)
+                        <li>{{ $item }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+            
+    </div>
+    @endsection
