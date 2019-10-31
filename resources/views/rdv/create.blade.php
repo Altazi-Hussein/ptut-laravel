@@ -7,6 +7,7 @@
                 @if(Auth::check())
                     <!-- choix de l'option : choisir un patient existant ou en créer un nouveau -->
                     <a href= {{url('rdv/createSelection')}}> Selectionner un patient existant </a>
+                    <br>
                     <a href={{url('rdv/createCreation')}}> Créer un nouveau patient </a>
                 
                 @else

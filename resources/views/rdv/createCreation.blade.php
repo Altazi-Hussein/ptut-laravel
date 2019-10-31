@@ -12,6 +12,16 @@
                 {!! Form::text('firstName', null, ['class' => 'form-control w-25', 'placeholder' => 'Entrez le prénom du patient']) !!} 
                 {!! Form::submit('Envoyer !', ['class' => 'btn btn-success']) !!}
             {!! Form::close() !!}
-        @endif    
+        @endif
+        @if ($errors->any())
+            <div class="error">
+                <ul>
+                    @foreach ($errors->all() as $item)
+                        <li>{{ $item }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+            
     </div>
     @endsection

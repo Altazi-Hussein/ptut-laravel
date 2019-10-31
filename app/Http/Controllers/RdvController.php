@@ -65,19 +65,19 @@ class RdvController extends Controller
     }
 
     //Creation d'un nouveau RDV via un nouveau patient
-    public function storeCreation(RdvRequest $r)
+    public function storeCreation(Request $r)
     {
         $rdv = new Rdv;
         $patient = new Patient;
         $patient->lastname = $r->input('lastName');
         $patient->firstname = $r->input('firstName');
         $patient->save(); 
-        $rdv->raison = $r->input('raison');
+        $rdv->reason = $r->input('raison');
         $rdv->patient_id = $patient->id;
         
         $rdv->save();
 
-        return view('rdv/store');
+        return view('rdv/storeResultat');
     }
 
     public function storeResultat()
