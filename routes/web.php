@@ -41,7 +41,7 @@ Route::resource('/calendrier', 'CalendrierController');
 Route::post('calendrier_ajax_update', ['uses' => 'CalendrierController@ajaxUpdate', 'as' => 'calendrier.ajax_update']);
 
 Route::get('/test', function(){
-	$user = \App\User::first();
-	return $user->rdvs->first();
+	$patient = \App\Rdv::search('Cummings')->get();
+	return $patient;
 }
 );
