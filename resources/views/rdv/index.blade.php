@@ -16,18 +16,18 @@
                   <tr>
                     <th class="text-center"scope="col">#</th>
                     <th class="text-center"scope="col">Raison</th>
-                    <th class="text-center"scope="col">ID Patient</th>
-                    <th class="text-center"scope="col">ID User</th>
+                    <th class="text-center"scope="col">Patient</th>
+                    <th class="text-center"scope="col">Infirmière</th>
                     <th class="text-center"scope="col">Date</th>
                   </tr>
                <tbody>
                @foreach ($rdvs as $rdv)
                   <tr>
-                     <th class="text-center" scope="row">{{$rdv["id"]}}</th>
-                     <td class="text-center">{{$rdv["reason"]}}</td>
-                     <td class="text-center">{{$rdv["patient_id"]}}</td>
-                     <td class="text-center">{{$rdv["user_id"]}}</td>
-                     <td class="text-center">{{$rdv["start_time"]}}</td>
+                     <th class="text-center" scope="row">{{$rdv->id}}</th>
+                     <td class="text-center">{{$rdv->reason}}</td>
+                     <td class="text-center">{{$rdv->patient->firstName}} {{$rdv->patient->lastName}}</td>
+                     <td class="text-center">{{$rdv->user->name}}</td>
+                     <td class="text-center">{{$rdv->start_time}}</td>
                   </tr>
                @endforeach 
                </tbody>
