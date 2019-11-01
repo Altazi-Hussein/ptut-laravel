@@ -27,7 +27,11 @@
                      <th class="text-center" scope="row">{{$rdv->id}}</th>
                      <td class="text-center">{{$rdv->reason}}</td>
                      <td class="text-center">{{$rdv->patient->firstName}} {{$rdv->patient->lastName}}</td>
+                     @if (!empty($rdv->user))
                      <td class="text-center">{{$rdv->user->name}}</td>
+                     @else
+                     <td class="text-center">Personne</td>
+                     @endif
                      <td class="text-center">{{$rdv->start_time}}</td>
                   </tr>
                @endforeach 
