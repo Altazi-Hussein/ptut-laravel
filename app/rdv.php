@@ -22,7 +22,7 @@ class Rdv extends Model
     public function toSearchableArray(){
         $array = $this->toArray();
         $array['patient_id'] = Patient::find($array['patient_id']);
-        $array['user_id'] = User::find($array['user_id']);
+        $array['user_id'] = isset($array['user_id']) ? User::find($array['user_id']) : null;
         return $array;
     }
 
