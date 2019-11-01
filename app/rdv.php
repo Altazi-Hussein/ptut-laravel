@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Patient;
+use App\User;
 
 class Rdv extends Model
 {
@@ -15,11 +17,11 @@ class Rdv extends Model
 
     public function patient()
     {
-        return $this->belongsTo(\App\Patient::class);
+        return $this->belongsTo(Patient::class);
     }
     
     public function user()
     {
-        return $this->belongsTo(\App\User::class);
+        return $this->belongsTo(User::class);
     }
 }
