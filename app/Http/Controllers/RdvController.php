@@ -6,8 +6,9 @@ use App\Rdv;
 use App\Patient;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
-use Illuminate\Http\Request;
-use App\Http\Requests\RdvRequest;
+//use Illuminate\Http\Request;
+use App\Http\Requests\RdvRequestSelection;
+use App\Http\Requests\RdvRequestCreation;
 
 
 
@@ -29,7 +30,7 @@ class RdvController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $requestMethodePatient)
+    public function create(/*Request $requestMethodePatient*/)
     {
         return view('rdv/create');
     }
@@ -49,7 +50,7 @@ class RdvController extends Controller
     }
     
     //Création d'un nouveau RDV via un patient existant
-    public function storeSelection(RdvRequest $r)
+    public function storeSelection(RdvRequestSelection $r)
     {
         $rdv = new Rdv;
         $rdv->reason = $r->input('raison');
@@ -60,7 +61,7 @@ class RdvController extends Controller
     }
 
     //Creation d'un nouveau RDV via un nouveau patient
-    public function storeCreation(Request $r)
+    public function storeCreation(RdvRequestCreation $r)
     {
         $rdv = new Rdv;
         $patient = new Patient;
