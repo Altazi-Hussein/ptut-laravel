@@ -26,7 +26,8 @@ class RdvRequestCreation extends FormRequest
         return [
             'raison' => 'required',
             'lastName' => 'required',
-            'firstName' => 'required'
+            'firstName' => 'required',
+            'started_at' => 'required'
         ];
     }
 }
