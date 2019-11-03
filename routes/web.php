@@ -41,8 +41,11 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('/calendrier', 'CalendrierController');
 Route::post('calendrier_ajax_update', ['uses' => 'CalendrierController@ajaxUpdate', 'as' => 'calendrier.ajax_update']);
 
+//Search
+Route::get('/search', 'SearchController@index');
+Route::post('/search/action', 'SearchController@action')->name('search.action');
+
 Route::get('/test', function(){
-	$user = \App\User::first();
-	return $user->rdvs->first();
+	return new App\Http\Resources\RdvCollection(App\Rdv::all());
 }
 );
