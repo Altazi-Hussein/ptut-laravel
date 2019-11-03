@@ -30,6 +30,7 @@ Route::post('ajoutRdv', ['uses' => 'RdvController@postForm', 'as' => 'rdvEnregis
 Route::get('rdv/createSelection', 'RdvController@createSelection');
 Route::get('rdv/createCreation', 'RdvController@createCreation');
 Route::resource('rdv', 'RdvController');
+Route::get('rdv/{id}', 'RdvController@show');
 Route::post('rdv/storeSelection', 'RdvController@storeSelection');
 Route::post('rdv/storeCreation', 'RdvController@storeCreation');
 
