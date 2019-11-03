@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Scout\Searchable;
+use App\Rdv;
 
 class Patient extends Model
 {
@@ -24,6 +25,6 @@ class Patient extends Model
         return $array;
     }
     public function rdvs(){
-        return $this->hasMany(\App\Rdv::class);
+        return $this->hasMany(Rdv::class);
     }
 }
