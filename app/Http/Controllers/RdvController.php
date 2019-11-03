@@ -54,7 +54,8 @@ class RdvController extends Controller
     {
         $rdv = new Rdv;
         $rdv->reason = $r->input('raison');
-        $rdv->patient_id = $r->input('patient'); 
+        $rdv->patient_id = $r->input('patient');
+        $rdv->start_time = $r->input('started_at');
         $rdv->save();
 
         return view('rdv/storeResultat');
@@ -67,9 +68,10 @@ class RdvController extends Controller
         $patient = new Patient;
         $patient->lastname = $r->input('lastName');
         $patient->firstname = $r->input('firstName');
-        $patient->save(); 
+        $patient->save();
         $rdv->reason = $r->input('raison');
         $rdv->patient_id = $patient->id;
+        $rdv->start_time = $r->input('started_at');
         
         $rdv->save();
         return view('rdv/storeResultat');

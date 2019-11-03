@@ -49,7 +49,7 @@ Route::get('/test', function(){
 }
 );
 
-Route::get('/nonConnecte', function()
+/* Route::get('/nonConnecte', function()
 {
 	return view('nonConnecte');
-});
+}); */

@@ -47,7 +47,6 @@
             {!! Form::date('started_at', null, ['class' => 'form-control mb-2', 'id' => 'date']) !!}
 
             {!! Form::submit('Ajouter', ['class' => 'btn btn-success mt-2 float-right']) !!}
-            {!! Form::submit('Ajouter', ['class' => 'btn btn-success mt-2 float-right']) !!}
             {!! Form::close() !!}
         @endif
 </div>
