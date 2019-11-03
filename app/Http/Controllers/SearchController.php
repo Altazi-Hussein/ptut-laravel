@@ -19,40 +19,8 @@ class SearchController extends Controller
             $query = $r->input('query');
             //return new RdvCollection(Rdv::search($query)->get());
             $rdvs = Rdv::search($query)->get();
-            $output = <<<WOW
-            <table class='table table-striped'>
-            <thead>
-                  <tr>
-                    <th class="text-center"scope="col">#</th>
-                    <th class="text-center"scope="col">Raison</th>
-                    <th class="text-center"scope="col">Patient</th>
-                    <th class="text-center"scope="col">Infirmière</th>
-                    <th class="text-center"scope="col">Date</th>
-                  </tr>
-               <tbody>
-WOW;
-            foreach ($rdvs as $rdv){
-                $output .= <<<WOW
-                <tr>
-                    <th class="text-center" scope="row">{$rdv->id}</th>
-                    <td class="text-center">{$rdv->reason}</td>
-                    <td class="text-center">{$rdv->patient->firstName} {$rdv->patient->lastName}</td>
-WOW;
-                    if (!empty($rdv->user)){
-                        $output .="
-                     <td class='text-center'>{$rdv->user->name}</td>";
-                    }
-                    else{
-                        $output .='
-                        <td class="text-center">Personne</td>';
-                    }
-                  $output .="</tr>";
-            }
-            $output .= "
-               </tbody>
-            </thead>
-         </table>";
-            return $output;
+            
+            return view('beta.tableSearch', ['rdvs' => $rdvs]);
         }
         else
         {
