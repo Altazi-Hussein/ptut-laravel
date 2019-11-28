@@ -6,7 +6,7 @@ use App\Rdv;
 use App\Patient;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
-//use Illuminate\Http\Request;
+use Illuminate\Http\Request;
 use App\Http\Requests\RdvRequestSelection;
 use App\Http\Requests\RdvRequestCreation;
 
@@ -30,34 +30,38 @@ class RdvController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(/*Request $requestMethodePatient*/)
-    {
-        return view('rdv/create');
-    }
-    
-    //Formulaire de création d'un RDV via un patient existant
-    public function createSelection()
+    public function create()
     {
         $patients = Patient::all();
-
-        return view('rdv/createSelection', ['patients' => $patients]);
-    }
-
-    //Formulaire de création de RDV via un nouveau patient
-    public function createCreation()
-    {
-        return view('rdv/createCreation');
+        return view('rdv/create', ['patients' => $patients]);
     }
     
+    
     //Création d'un nouveau RDV via un patient existant
-    public function storeSelection(RdvRequestSelection $r)
+    public function store(Request $r)
     {
+        $typeRdvRequest = $r->validate([
+            'styleDeRDV' => 'required'
+        ]);
         $rdv = new Rdv;
-        $rdv->reason = $r->input('raison');
-        $rdv->patient_id = $r->input('patient'); 
+        if($r->input('styleDeRDV') == 'selectionPatient'){
+            $r->validate((new RdvRequestSelection)->rules());
+            $rdv->reason = $r->input('raison');
+            $rdv->patient_id = $r->input('patient');
+        } 
+        else{
+            $r->validate((new RdvRequestCreation)->rules());
+            $patient = new Patient;
+            $patient->lastname = $r->input('lastName');
+            $patient->firstname = $r->input('firstName');
+            $patient->save(); 
+            $rdv->reason = $r->input('raison');
+            $rdv->patient_id = $patient->id;
+        }
         $rdv->save();
 
-        return view('rdv/storeResultat');
+        $patients = Patient::all();
+        return view('rdv/create', ['success' => 'Rendez-vous ajouté avec succès !', 'patients' => $patients]);
     }
 
     //Creation d'un nouveau RDV via un nouveau patient

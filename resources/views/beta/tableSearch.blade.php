@@ -20,6 +20,6 @@
                 @endif
             </tr>
            @endforeach
-           </tbody>
-        </thead>
-     </table>
+        </tbody>
+    </thead>
+</table>
