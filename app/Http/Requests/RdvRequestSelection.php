@@ -24,7 +24,7 @@ class RdvRequestSelection extends FormRequest
     public function rules()
     {
         return [
-            'raison' => 'required',
+            'type' => 'required',
             'patient' => 'required',
         ];
     }

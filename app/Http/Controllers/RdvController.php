@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Rdv;
-use App\Patient;
+use App\{Rdv, Patient, Type};
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
@@ -32,8 +31,9 @@ class RdvController extends Controller
      */
     public function create()
     {
-        $patients = Patient::all();
-        return view('rdv/create', ['patients' => $patients]);
+
+        $types = Type::all();
+        return view('rdv/create', ['types' => $types]);
     }
     
     
@@ -41,12 +41,12 @@ class RdvController extends Controller
     public function store(Request $r)
     {
         $typeRdvRequest = $r->validate([
-            'styleDeRDV' => 'required'
+            'styleDeRDV' => 'required',
         ]);
         $rdv = new Rdv;
         if($r->input('styleDeRDV') == 'selectionPatient'){
             $r->validate((new RdvRequestSelection)->rules());
-            $rdv->reason = $r->input('raison');
+            $rdv->type_id = $r->input('type');
             $rdv->patient_id = $r->input('patient');
         } 
         else{
@@ -55,34 +55,12 @@ class RdvController extends Controller
             $patient->lastname = $r->input('lastName');
             $patient->firstname = $r->input('firstName');
             $patient->save(); 
-            $rdv->reason = $r->input('raison');
+            $rdv->type_id = $r->input('type');
             $rdv->patient_id = $patient->id;
         }
         $rdv->save();
 
-        $patients = Patient::all();
-        return view('rdv/create', ['success' => 'Rendez-vous ajouté avec succès !', 'patients' => $patients]);
-    }
-
-    //Creation d'un nouveau RDV via un nouveau patient
-    public function storeCreation(RdvRequestCreation $r)
-    {
-        $rdv = new Rdv;
-        $patient = new Patient;
-        $patient->lastname = $r->input('lastName');
-        $patient->firstname = $r->input('firstName');
-        $patient->save(); 
-        $rdv->reason = $r->input('raison');
-        $rdv->patient_id = $patient->id;
-        
-        $rdv->save();
-
-        return view('rdv/storeResultat');
-    }
-
-    public function storeResultat()
-    {
-        return view('rdv/storeResultat');
+        return redirect('rdv/create')->with('success', 'Rendez-vous ajouté avec succès !');
     }
 
     /**

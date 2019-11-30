@@ -30,18 +30,22 @@
 @section('titleContent', 'Ajouter un rendez-vous')
 
 @section('content')
-@isset($success)
+@if (session('success'))
     <div class="alert alert-success">
-        {{ $success }}
+        {{ session('success') }}
     </div>
-@endisset
+@endif
 <div class="card-body" style="">
         @if(Auth::check())
             {!! Form::open(['action' => 'RdvController@store']) !!}
                 <label class="col-form-label text-md-right mb-2" for="raison">
                     {{ __('Motif du rendez-vous') }}
                 </label>
-                {!! Form::text('raison', null, ['class' => 'form-control mb-2', 'placeholder' => 'Motif de rendez-vous', 'id' => 'raison']) !!}
+                <select name="type" id="type" class="form-control mb-2">
+                    @foreach ($types as $type)
+                <option value="{{ $type->id }}">{{ $type->nom}}</option>
+                    @endforeach
+                </select>
                 <div class='btn-group btn-group-toggle' data-toggle='buttons'>
                     <label class='btn btn-secondary '>
                         <input type="radio" name="demo" value="creationPatient" checked/> Créer un patient
