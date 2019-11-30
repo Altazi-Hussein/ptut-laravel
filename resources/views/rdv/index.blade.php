@@ -11,7 +11,6 @@
       <div class="card">
       <div class="card-header" style="background: #e7e6ff; box-shadow: 0px 2px 5px grey;">Liste rendez-vous</div>
       <div class="card-body">-->
-
          <table class="table table-striped">
             <thead>
                   <tr>
@@ -39,6 +38,8 @@
             </thead>
          </table>
          <a class="btn btn-primary float-left" href="{{ route('home') }}">Retour</a>
+         
+         {{-- Ligne pour les boutons <-Précédent-Suivant-> --}}
          <div class="float-right">{{ $rdvs->links()}}</div>
        {{--<ul> 
         @foreach ($rdvs as $rdv)
