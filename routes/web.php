@@ -47,14 +47,10 @@ Route::get('/api/patient', function(\Illuminate\Http\Request $r){
 	]);
 	$query = $r->input('q');
     return new \App\Http\Resources\PatientCollection(\App\Patient::search($query)->get());
-}
-<<<<<<< HEAD
-)->name('recherchePatient');
-=======
-);
+})->name('recherchePatient');
+
 
 /* Route::get('/nonConnecte', function()
 {
 	return view('nonConnecte');
 }); */
->>>>>>> ecc9384c0acc6eba556928556602dc99af624ac7

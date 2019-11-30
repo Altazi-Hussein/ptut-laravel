@@ -41,20 +41,25 @@
                 <label class="col-form-label text-md-right mb-2" for="raison">
                     {{ __('Motif du rendez-vous') }}
                 </label>
+                {{-- On affiche tous les types de rendez-vous existants --}}
                 <select name="type" id="type" class="form-control mb-2">
                     @foreach ($types as $type)
-                <option value="{{ $type->id }}">{{ $type->nom}}</option>
+                        <option value="{{ $type->id }}">{{ $type->nom}}</option>
                     @endforeach
                 </select>
+
                 <div class='btn-group btn-group-toggle' data-toggle='buttons'>
+                    {{-- Bouton gris pour créer un nouveau patient --}}
                     <label class='btn btn-secondary '>
                         <input type="radio" name="demo" value="creationPatient" checked/> Créer un patient
                     </label>
+                    {{-- Bouton gris pour sélectionner un patient existant --}}
                     <label class='btn btn-secondary'>
                         <input type="radio" name="demo" value="selectionPatient"/> Sélectionner un patient
                     </label>    
                 </div>
                 <input type="hidden" id="styleDeRDV" name="styleDeRDV" value="creationPatient">
+                {{-- Affiche les inputs pour créer un nouveau patient --}}
                 <div id="creationPatient" class="creationRDV">
                     <label class="col-form-label text-md-right mb-2" for="patient">
                         {{ __('Ajout du patient') }}
@@ -62,12 +67,15 @@
                     {!! Form::text('lastName', null, ['class' => 'form-control mb-2', 'placeholder' => 'Nom de famille du patient', 'id' => 'patient']) !!}
                     {!! Form::text('firstName', null, ['class' => 'form-control mb-2', 'placeholder' => 'Prénom du patient']) !!} 
                 </div>
+                <p> test </p>
+                {{-- Affiche la liste déroulante pour sélectionner un patient existant --}}
                 <div id="selectionPatient" class="creationRDV" style="display:none;">
                     <label> Sélectionner un patient
                         <select name="patient" class="form-control mb-2 inputSearchable">
                         </select>
                     </label>
                 </div>
+                <p>test</p>
                 {!! Form::submit('Envoyer !', ['class' => 'btn btn-success mt-2']) !!}
             {!! Form::close() !!}
         @endif
