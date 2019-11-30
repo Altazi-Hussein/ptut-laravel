@@ -15,7 +15,7 @@ class CreateRdvsTable extends Migration
     {
         Schema::create('rdvs', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('reason',50);
+            $table->unsignedBigInteger('type_id');
             $table->unsignedBigInteger('patient_id')->nullable();
             $table->unsignedBigInteger('user_id')->nullable();
 
@@ -25,6 +25,7 @@ class CreateRdvsTable extends Migration
 
             $table->foreign('patient_id')->references('id')->on('patients')->ondelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->ondelete('cascade');
+            $table->foreign('type_id')->references('id')->on('types')->ondelete('cascade');
             $table->timestamps();
         });
     }

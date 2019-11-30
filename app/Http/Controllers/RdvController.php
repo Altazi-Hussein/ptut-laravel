@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Rdv;
-use App\Patient;
+use App\{Rdv, Patient, Type};
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
-//use Illuminate\Http\Request;
+use Illuminate\Http\Request;
 use App\Http\Requests\RdvRequestSelection;
 use App\Http\Requests\RdvRequestCreation;
 
@@ -30,56 +29,38 @@ class RdvController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(/*Request $requestMethodePatient*/)
+    public function create()
     {
-        return view('rdv/create');
+
+        $types = Type::all();
+        return view('rdv/create', ['types' => $types]);
     }
     
-    //Formulaire de création d'un RDV via un patient existant
-    public function createSelection()
-    {
-        $patients = Patient::all();
-
-        return view('rdv/createSelection', ['patients' => $patients]);
-    }
-
-    //Formulaire de création de RDV via un nouveau patient
-    public function createCreation()
-    {
-        return view('rdv/createCreation');
-    }
     
     //Création d'un nouveau RDV via un patient existant
-    public function storeSelection(RdvRequestSelection $r)
+    public function store(Request $r)
     {
+        $typeRdvRequest = $r->validate([
+            'styleDeRDV' => 'required',
+        ]);
         $rdv = new Rdv;
-        $rdv->reason = $r->input('raison');
-        $rdv->patient_id = $r->input('patient');
-        $rdv->start_time = $r->input('started_at');
+        if($r->input('styleDeRDV') == 'selectionPatient'){
+            $r->validate((new RdvRequestSelection)->rules());
+            $rdv->type_id = $r->input('type');
+            $rdv->patient_id = $r->input('patient');
+        } 
+        else{
+            $r->validate((new RdvRequestCreation)->rules());
+            $patient = new Patient;
+            $patient->lastname = $r->input('lastName');
+            $patient->firstname = $r->input('firstName');
+            $patient->save(); 
+            $rdv->type_id = $r->input('type');
+            $rdv->patient_id = $patient->id;
+        }
         $rdv->save();
 
-        return view('rdv/storeResultat');
-    }
-
-    //Creation d'un nouveau RDV via un nouveau patient
-    public function storeCreation(RdvRequestCreation $r)
-    {
-        $rdv = new Rdv;
-        $patient = new Patient;
-        $patient->lastname = $r->input('lastName');
-        $patient->firstname = $r->input('firstName');
-        $patient->save();
-        $rdv->reason = $r->input('raison');
-        $rdv->patient_id = $patient->id;
-        $rdv->start_time = $r->input('started_at');
-        
-        $rdv->save();
-        return view('rdv/storeResultat');
-    }
-
-    public function storeResultat()
-    {
-        return view('rdv/storeResultat');
+        return redirect('rdv/create')->with('success', 'Rendez-vous ajouté avec succès !');
     }
 
     /**
