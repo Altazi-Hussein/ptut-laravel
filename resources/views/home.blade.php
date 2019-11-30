@@ -13,7 +13,7 @@
             <a class="btn btn-success p-3 mt-2" href="{{url('rdv/create')}}">Ajouter un rendez-vous</a>
             <a class="btn btn-success p-3 mt-2" href="{{url('rdv')}}">Voir liste des rendez-vous</a>
             <a class="btn btn-success p-3 mt-2" href="{{url('calendrier')}}">Accéder au calendrier</a>
-            <a class="btn btn-primary p-3 mt-2" href=#>Ajouter un type de rendez-vous</a>
+            <a class="btn btn-primary p-3 mt-2" href="{{url('type/create')}}">Ajouter un type de rendez-vous</a>
         </form>
 </div>
 @endsection

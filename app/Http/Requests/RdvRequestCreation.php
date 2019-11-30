@@ -27,7 +27,6 @@ class RdvRequestCreation extends FormRequest
             'type' => 'required',
             'lastName' => 'required',
             'firstName' => 'required',
-            'started_at' => 'required'
         ];
     }
 }

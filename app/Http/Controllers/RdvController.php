@@ -41,7 +41,7 @@ class RdvController extends Controller
     public function store(Request $r)
     {
         $typeRdvRequest = $r->validate([
-            'styleDeRDV' => 'required',
+            'styleDeRDV' => 'required'
         ]);
         $rdv = new Rdv;
         if($r->input('styleDeRDV') == 'selectionPatient'){
