@@ -41,19 +41,15 @@ Route::post('calendrier_ajax_update', ['uses' => 'CalendrierController@ajaxUpdat
 Route::get('/search', 'SearchController@index');
 Route::post('/search/action', 'SearchController@action')->name('search.action');
 
+Route::get('type/create', 'TypeController@getForm');
+
 Route::get('/api/patient', function(\Illuminate\Http\Request $r){
 	$recherche = $r->validate([
 		'q' => 'required'
 	]);
 	$query = $r->input('q');
     return new \App\Http\Resources\PatientCollection(\App\Patient::search($query)->get());
-<<<<<<< HEAD
 })->name('recherchePatient');
-
-=======
-}
-)->name('recherchePatient');
->>>>>>> 742c11786b6900a63fb70479d5aa2e4cb1f7a08c
 
 /* Route::get('/nonConnecte', function()
 {

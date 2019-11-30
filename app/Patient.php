@@ -16,7 +16,7 @@ class Patient extends Model
     public $asYouType = true;
 
     protected $fillable = [
-        'firstName', 'lastName',
+        'firstName', 'lastName',/* , 'telephone', 'adress', 'etage', 'infoDomicile', 'pathologie', 'typeSoin', */
     ];
 
     public function toSearchableArray(){

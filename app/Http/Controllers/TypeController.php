@@ -3,17 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\{Rdv, Patient, Type};
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Input;
+use App\Http\Requests\TypeRdvRequest;
 
 class TypeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function getForm()
     {
-        //
+        return view('type/create');
     }
 
     /**
@@ -32,9 +31,16 @@ class TypeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $r)
     {
-        //
+        $type = new Type;
+        $r->validate((new TypeRdvRequest)->rules());
+        $type->nom = $r->input('nom');
+        $type->heureDebut = $r->input('heureDebut');
+        $type->heureFin = $r->input('heureFin');
+        $type->save();
+
+        return view('typeAjoute');
     }
 
     /**

@@ -67,7 +67,6 @@
                     {!! Form::text('lastName', null, ['class' => 'form-control mb-2', 'placeholder' => 'Nom de famille du patient', 'id' => 'patient']) !!}
                     {!! Form::text('firstName', null, ['class' => 'form-control mb-2', 'placeholder' => 'Prénom du patient']) !!} 
                 </div>
-                <p> test </p>
                 {{-- Affiche la liste déroulante pour sélectionner un patient existant --}}
                 <div id="selectionPatient" class="creationRDV" style="display:none;">
                     <label> Sélectionner un patient
@@ -75,7 +74,6 @@
                         </select>
                     </label>
                 </div>
-                <p>test</p>
                 {!! Form::submit('Envoyer !', ['class' => 'btn btn-success mt-2']) !!}
             {!! Form::close() !!}
         @endif
