@@ -19,14 +19,38 @@
 @section('titleContent', 'Calendrier')
 
 @section('content')
+@if(Auth::check())
 <div class="card-body" style="">
-        <a href=" {{ route('home') }}">
-            <input class="btn btn-success float-right" type="button" value="Accueil">
-        </a>
+{{--         <div id="game">
+                <button onClick="choose('oui')">Modifier</button>
+                <button onClick="choose('non')">Fin modification</button>
+                <button onClick="test()">DEBUG</button>
+            </div>
+            <script>
+            var change;
+            var modifiable;
+            function choose(choice){
+                if(choice == 'oui')
+                {
+                    window.location.reload();
+                    modifiable = true;
+                }
+                if (choice == 'non')
+                {
+                    window.location.reload();
+                    modifiable = false;
+                }
+            }
+            
+            function test(click){
+                alert("Modifiable est maintenant " + modifiable);
+            }
+            
+            </script> --}}
+        <a href=" {{ route('home') }}" class="btn btn-primary">Retour</a>
     <div id='calendar'></div>
     <script>
         var modifiable = true;
-
          document.addEventListener('DOMContentLoaded', function() {
             var calendarEl = document.getElementById('calendar');
             var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -36,9 +60,9 @@
             maxTime: "18:00",
             defaultView: 'timeGridFourDay',
             header: {
-                left: 'prev,next',
+                left: 'dayGridDay,dayGridWeek',
                 center: 'title',
-                right: 'dayGridDay,dayGridWeek'
+                right: 'prev,next',
             },
             views: {
                 timeGridFourDay: {
@@ -98,25 +122,26 @@
                     <input type="hidden" name="event_id" id="event_id" value="" />
                     <input type="hidden" name="rdv_id" id="rdv_id" value="" />
                     <div class="modal-body">
-                        <h4>Edit Appointment</h4><h3 id="titleModal"></h3>
+                        <h4>Modifier rendez-vous</h4><h3 id="titleModal"></h3>
     
-                        Start time:
+                        Date début:
                         <br />
                         <input type="text" class="form-control" name="start_time" id="start_time">
     
-                        End time:
+                        Date fin:
                         <br />
                         <input type="text" class="form-control" name="finish_time" id="finish_time">
                     </div>
     
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <input type="button" class="btn btn-primary" id="appointment_update" value="Save">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                        <input type="button" class="btn btn-primary" id="appointment_update" value="Valider">
                     </div>
                 </div>
             </div>
     </div>
 </div>
+@endif
 @endsection
 
 {{--

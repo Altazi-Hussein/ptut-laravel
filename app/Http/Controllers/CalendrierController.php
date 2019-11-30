@@ -19,4 +19,8 @@ class CalendrierController extends Controller
 
         return response()->json(['rdv' => $rdv]);
     }
+    public function show()
+    {
+        return view('beta/index');
+    }
 }

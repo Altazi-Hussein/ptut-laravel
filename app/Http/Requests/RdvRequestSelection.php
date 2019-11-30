@@ -26,6 +26,7 @@ class RdvRequestSelection extends FormRequest
         return [
             'raison' => 'required',
             'patient' => 'required',
+            'started_at' => 'required'
         ];
     }
 }

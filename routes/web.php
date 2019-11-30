@@ -49,3 +49,8 @@ Route::get('/test', function(){
 	return new App\Http\Resources\RdvCollection(App\Rdv::all());
 }
 );
+
+/* Route::get('/nonConnecte', function()
+{
+	return view('nonConnecte');
+}); */
