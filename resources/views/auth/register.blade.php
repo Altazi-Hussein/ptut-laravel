@@ -63,14 +63,12 @@
                             </div>
                         </div>
                         <div class="form-group row mb-0">
-                            <a class="btn bg-primary p-2 mt-2 text-light float-left" href="{{ url('/')}}">Retour</a>
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-success">
                                     {{ __('S\'inscrire') }}
                                 </button>
                                 
                             </div>
-                            
                         </div>
                     </form>
                 </div>
@@ -78,4 +76,5 @@
         </div>
     </div>--}}
 </div>
+<a class="btn bg-primary p-2 mt-2 text-light float-left" href="{{ url('/')}}">Retour</a>
 @endsection
