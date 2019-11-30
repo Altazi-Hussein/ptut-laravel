@@ -15,7 +15,7 @@
     @endif
 
 @if(Auth::check())
-{!! Form::open(['action' => 'RdvController@store']) !!}
+{!! Form::open(['action' => 'TypeController@store']) !!}
 <label class="col-form-label text-md-right mb-2" for="nameType">
         {{ __('Ajouter un type de rendez-vous') }}
 </label> 

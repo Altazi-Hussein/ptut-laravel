@@ -41,7 +41,7 @@ Route::post('calendrier_ajax_update', ['uses' => 'CalendrierController@ajaxUpdat
 Route::get('/search', 'SearchController@index');
 Route::post('/search/action', 'SearchController@action')->name('search.action');
 
-Route::get('type/create', 'TypeController@getForm');
+Route::resource('type', 'TypeController');
 
 Route::get('/api/patient', function(\Illuminate\Http\Request $r){
 	$recherche = $r->validate([

@@ -10,9 +10,8 @@ use App\Http\Requests\TypeRdvRequest;
 
 class TypeController extends Controller
 {
-    public function getForm()
+    public function index()
     {
-        return view('type/create');
     }
 
     /**
@@ -22,7 +21,7 @@ class TypeController extends Controller
      */
     public function create()
     {
-        //
+        return view('type/create');
     }
 
     /**
@@ -31,16 +30,15 @@ class TypeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $r)
+    public function store(TypeRdvRequest $r)
     {
         $type = new Type;
-        $r->validate((new TypeRdvRequest)->rules());
         $type->nom = $r->input('nom');
         $type->heureDebut = $r->input('heureDebut');
         $type->heureFin = $r->input('heureFin');
         $type->save();
 
-        return view('typeAjoute');
+        return view('type/create');
     }
 
     /**
