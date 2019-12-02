@@ -44,7 +44,7 @@
             <label class="col-form-label text-md-right mb-2" for="date">
                     {{ __('Date du rendez-vous') }}
             </label>
-            {!! Form::date('started_at', null, ['class' => 'form-control mb-2', 'id' => 'date']) !!}
+            {{-- {!! Form::date('started_at', null, ['class' => 'form-control mb-2', 'id' => 'date']) !!} --}}
 
             {!! Form::submit('Ajouter', ['class' => 'btn btn-success mt-2 float-right']) !!}
             {!! Form::close() !!}

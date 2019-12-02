@@ -43,9 +43,10 @@
                 <label class="col-form-label text-md-right mb-2" for="raison">
                     {{ __('Motif du rendez-vous') }}
                 </label>
+                {{-- On affiche tous les types de rendez-vous existants --}}
                 <select name="type" id="type" class="form-control mb-2">
                     @foreach ($types as $type)
-                <option value="{{ $type->id }}">{{ $type->nom}}</option>
+                        <option value="{{ $type->id }}">{{ $type->nom}}</option>
                     @endforeach
                 </select>
                 <div class='btn-group btn-group-toggle d-flex justify-content-center' data-toggle='buttons'>
@@ -57,6 +58,7 @@
                     </label>    
                 </div>
                 <input type="hidden" id="styleDeRDV" name="styleDeRDV" value="creationPatient">
+                {{-- Affiche les inputs pour créer un nouveau patient --}}
                 <div id="creationPatient" class="creationRDV">
                     <label class="col-form-label text-md-right mb-2" for="patient">
                         {{ __('Ajout du patient') }}
@@ -64,6 +66,7 @@
                     {!! Form::text('lastName', null, ['class' => 'form-control mb-2', 'placeholder' => 'Nom de famille du patient', 'id' => 'patient']) !!}
                     {!! Form::text('firstName', null, ['class' => 'form-control mb-2', 'placeholder' => 'Prénom du patient']) !!} 
                 </div>
+                {{-- Affiche la liste déroulante pour sélectionner un patient existant --}}
                 <div id="selectionPatient" class="creationRDV" style="display:none;">
                     <label class="col-form-label text-md-right mb-2"> Sélectionner un patient
                         <select name="patient" class="form-control mb-2 inputSearchable ">
