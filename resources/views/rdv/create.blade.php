@@ -2,9 +2,11 @@
 @extends('layouts.app')
 @section('head')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
 <link href="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js"></script>
 <link href="https://raw.githack.com/ttskch/select2-bootstrap4-theme/master/dist/select2-bootstrap4.css" rel="stylesheet">
+
 <script>
     $(document).ready(function(){
         $('input[type="radio"]').click(function(){
@@ -47,14 +49,11 @@
                         <option value="{{ $type->id }}">{{ $type->nom}}</option>
                     @endforeach
                 </select>
-
-                <div class='btn-group btn-group-toggle' data-toggle='buttons'>
-                    {{-- Bouton gris pour créer un nouveau patient --}}
-                    <label class='btn btn-secondary '>
+                <div class='btn-group btn-group-toggle d-flex justify-content-center' data-toggle='buttons'>
+                    <label class='btn btn-secondary' id="buttoncreationPatient">
                         <input type="radio" name="demo" value="creationPatient" checked/> Créer un patient
                     </label>
-                    {{-- Bouton gris pour sélectionner un patient existant --}}
-                    <label class='btn btn-secondary'>
+                    <label class='btn btn-secondary' id="buttonselectionPatient">
                         <input type="radio" name="demo" value="selectionPatient"/> Sélectionner un patient
                     </label>    
                 </div>
@@ -69,12 +68,14 @@
                 </div>
                 {{-- Affiche la liste déroulante pour sélectionner un patient existant --}}
                 <div id="selectionPatient" class="creationRDV" style="display:none;">
-                    <label> Sélectionner un patient
-                        <select name="patient" class="form-control mb-2 inputSearchable">
+                    <label class="col-form-label text-md-right mb-2"> Sélectionner un patient
+                        <select name="patient" class="form-control mb-2 inputSearchable ">
                         </select>
                     </label>
                 </div>
-                {!! Form::submit('Envoyer !', ['class' => 'btn btn-success mt-2']) !!}
+                <div class="d-flex justify-content-center">
+                    <input type="submit" value="Envoyer !" class="btn btn-success mt-2">
+                </div>
             {!! Form::close() !!}
         @endif
 

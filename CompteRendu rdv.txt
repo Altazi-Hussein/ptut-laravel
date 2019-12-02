@@ -1,0 +1,29 @@
+Todo:
+important elle en parle plusieurs fois -> {
+    Module configuration grosse semaine / petite semaine afin de connaitre les horaires en avance
+}
+et savoir quelle infirmière est de permanence
+Module configuration secteur (ville), attribué en priorité les rdv par secteur
+depot de sang obligatoire 
+fin 12-12h30
+17h30 - 20h
+ordre de traitement pas d'horaire
+traiter les prises de sang en priorité par conséquent
+harmonisation des toilettes car c'est les plus long (équilibrage par ordonnanceur)
+Calcul kilométrage (de cabinet à chez patient) aller retour cabinet ville + aller retour cabinet - domicile
+samedi/dimanche facturation pour les rdv unique
+Faire une table de calendrier
+
+
+Permettre l'ajout de rdv pour un jour précis
+Visibilité sur plusieurs mois
+algo{
+    Valentin
+    Hugo
+}
+interface{
+    Ali
+    Lucas
+}
+
+dernière semaine décembre Lundi 13h30
