@@ -30,13 +30,13 @@
 @section('titleContent', 'Ajouter un rendez-vous')
 
 @section('content')
-@if (session('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
-    </div>
-@endif
 <div class="card-body" style="">
         @if(Auth::check())
+        @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
             {!! Form::open(['action' => 'RdvController@store']) !!}
                 <label class="col-form-label text-md-right mb-2" for="raison">
                     {{ __('Motif du rendez-vous') }}

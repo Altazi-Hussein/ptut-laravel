@@ -12,6 +12,8 @@ class TypeController extends Controller
 {
     public function index()
     {
+        $types = Type::simplePaginate(15);
+        return view('type/index', ['types' => $types]);
     }
 
     /**
@@ -21,7 +23,7 @@ class TypeController extends Controller
      */
     public function create()
     {
-        return view('type/create');
+        return view('type/create')->with('success', 'Type ajouté avec succès');
     }
 
     /**
@@ -38,7 +40,7 @@ class TypeController extends Controller
         $type->heureFin = $r->input('heureFin');
         $type->save();
 
-        return view('type/create');
+        return view('/type/create')->with('success', 'Type ajouté avec succès');
     }
 
     /**
@@ -49,7 +51,7 @@ class TypeController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('type.show', ['type' => Type::findOrFail($id)]);
     }
 
     /**
@@ -60,7 +62,8 @@ class TypeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $type = Type::findOrFail($id);
+        return view('type/edit', ['type' => $type]);
     }
 
     /**
@@ -70,9 +73,10 @@ class TypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(TypeRdvRequest $request, $id)
     {
-        //
+        Type::where('id', $id)->update($request->except('_token', '_method'));
+        return redirect('type/')->with('success', 'Type modifié');
     }
 
     /**
@@ -83,6 +87,8 @@ class TypeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $type = Type::find($id);
+        $type->delete();
+        return redirect('/type')->with('success', 'Type supprimé');
     }
 }
