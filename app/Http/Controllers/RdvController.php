@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\{Rdv, Patient, Type};
+use App\{User, Rdv, Patient, Type};
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
 use App\Http\Requests\RdvRequestSelection;
 use App\Http\Requests\RdvRequestCreation;
+use Auth;
 
 
 
@@ -58,6 +59,7 @@ class RdvController extends Controller
             $rdv->type_id = $r->input('type');
             $rdv->patient_id = $patient->id;
         }
+        $rdv->user_id = Auth::id();
         $rdv->save();
 
         return redirect('rdv/create')->with('success', 'Rendez-vous ajouté avec succès !');
@@ -82,8 +84,11 @@ class RdvController extends Controller
      */
     public function edit($id)
     {
-        return view('rdv.edit', ['rdv' => Rdv::findOrFail($id)] ); //Vue a faire plus tard 
-
+        return view('rdv.edit', ['rdv' => Rdv::findOrFail($id), 
+                                'types' => Type::all(),
+                                'patients' => Patient::all(),
+                                'users' => User::all(),
+                                ]); //Vue a faire plus tard 
     }
 
     /**
@@ -95,7 +100,9 @@ class RdvController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+        Rdv::where('id', $id)->update($request->except('_token', '_method'));
+        return redirect('rdv/')->with('success', 'Type modifié');
+
     }
 
     /**
@@ -106,7 +113,9 @@ class RdvController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $rdv = Rdv::find($id);
+        $rdv->delete();
+        return redirect('/rdv')->with('success', 'Rendez-vous supprimé avec succès');
     }
 
 }

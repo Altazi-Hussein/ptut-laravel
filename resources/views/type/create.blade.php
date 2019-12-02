@@ -3,24 +3,23 @@
 
 
 @section('content')
+<div class="card-body" style="">
+@if(Auth::check())
+@if ($errors->any())
+<div class="error">
+    <ul>
+        @foreach ($errors->all() as $item)
+            <li>{{ $item }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
+
 @if(session('success'))
          <div class="alert alert-success" role="alert">
             {{session('success')}}
          </div>
-      @endif
-<div class="card-body" style="">
-        @if ($errors->any())
-        <div class="error">
-            <ul>
-                @foreach ($errors->all() as $item)
-                    <li>{{ $item }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-
-@if(Auth::check())
-
+@endif
 {!! Form::open(['action' => 'TypeController@store']) !!}
 <label class="col-form-label text-md-right mb-2" for="nameType">
         {{ __('Ajouter un type de rendez-vous') }}

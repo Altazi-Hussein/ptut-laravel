@@ -69,12 +69,12 @@
                 {{-- Affiche la liste déroulante pour sélectionner un patient existant --}}
                 <div id="selectionPatient" class="creationRDV" style="display:none;">
                     <label class="col-form-label text-md-right mb-2"> Sélectionner un patient
-                        <select name="patient" class="form-control mb-2 inputSearchable ">
-                        </select>
                     </label>
+                    <select name="patient" class="form-control mb-2 inputSearchable ">
+                        </select>
                 </div>
                 <div class="d-flex justify-content-center">
-                    <input type="submit" value="Envoyer !" class="btn btn-success mt-2">
+                    <input type="submit" value="Envoyer !" class="btn btn-success mt-3">
                 </div>
             {!! Form::close() !!}
         @endif
