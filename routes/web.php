@@ -41,6 +41,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('/calendrier', 'CalendrierController');
 Route::post('calendrier_ajax_update', ['uses' => 'CalendrierController@ajaxUpdate', 'as' => 'calendrier.ajax_update']);
 
+//génération
+Route::resource('/generation', 'GenerationController');
+
 //Search
 Route::get('/search', 'SearchController@index');
 Route::post('/search/action', 'SearchController@action')->name('search.action');
