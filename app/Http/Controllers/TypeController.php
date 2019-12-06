@@ -73,7 +73,7 @@ class TypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(TypeRdvRequest $request, $id)
+    public function update(TypeRdvRequest $request, id)
     {
         Type::where('id', $id)->update($request->except('_token', '_method'));
         return redirect('type/')->with('success', 'Type modifié');
