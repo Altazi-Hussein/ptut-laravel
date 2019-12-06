@@ -27,12 +27,8 @@ Route::post('ajoutRdv', ['uses' => 'RdvController@postForm', 'as' => 'rdvEnregis
 */
 
 
-Route::get('rdv/createSelection', 'RdvController@createSelection');
-Route::get('rdv/createCreation', 'RdvController@createCreation');
 Route::resource('rdv', 'RdvController');
 Route::get('rdv/{id}', 'RdvController@show');
-Route::post('rdv/storeSelection', 'RdvController@storeSelection');
-Route::post('rdv/storeCreation', 'RdvController@storeCreation');
 
 Route::get('rdv/storeResultat', 'RdvController@storeResultat');
 Route::get('/home', 'HomeController@index')->name('home');
@@ -48,12 +44,12 @@ Route::resource('/generation', 'GenerationController');
 Route::get('/search', 'SearchController@index');
 Route::post('/search/action', 'SearchController@action')->name('search.action');
 
-Route::get('/test', function(){
-	return new App\Http\Resources\RdvCollection(App\Rdv::all());
-}
-);
+Route::resource('type', 'TypeController');
 
-/* Route::get('/nonConnecte', function()
-{
-	return view('nonConnecte');
-}); */
+Route::get('/api/patient', function(\Illuminate\Http\Request $r){
+	$recherche = $r->validate([
+		'q' => 'required'
+	]);
+	$query = $r->input('q');
+    return new \App\Http\Resources\PatientCollection(\App\Patient::search($query)->get());
+})->name('recherchePatient');

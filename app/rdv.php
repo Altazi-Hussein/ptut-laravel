@@ -14,7 +14,7 @@ class Rdv extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'raison', 'patient', 'commentaire',
+        'type', 'patient', 'commentaire',
     ];
 
     public $asYouType = true;
@@ -30,7 +30,10 @@ class Rdv extends Model
     {
         return $this->belongsTo(Patient::class);
     }
-    
+    public function type()
+    {
+        return $this->belongsTo(Type::class);
+    }
     public function user()
     {
         return $this->belongsTo(User::class);

@@ -24,10 +24,9 @@ class RdvRequestCreation extends FormRequest
     public function rules()
     {
         return [
-            'raison' => 'required',
+            'type' => 'required',
             'lastName' => 'required',
             'firstName' => 'required',
-            'started_at' => 'required'
         ];
     }
 }
