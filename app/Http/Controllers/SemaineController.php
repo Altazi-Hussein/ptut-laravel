@@ -3,17 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\{Rdv, Patient, Type};
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Input;
-use App\Http\Requests\TypeRdvRequest;
+use App\{User, Semaine};
+use Auth;
 
-class TypeController extends Controller
+class SemaineController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
-        $types = Type::simplePaginate(15);
-        return view('type/index', ['types' => $types]);
+        //
     }
 
     /**
@@ -23,7 +25,8 @@ class TypeController extends Controller
      */
     public function create()
     {
-        return view('type/create')->with('success', 'Type ajouté avec succès');
+        $users = User::all();
+        return view('semaine/create', ['users' => $users]);
     }
 
     /**
@@ -32,15 +35,23 @@ class TypeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(TypeRdvRequest $r)
+    public function store(Request $request)
     {
-        $type = new Type;
+    $users = User::all();
+    foreach ($users as $user)
+     {
+        /* $type = new Type;
         $type->nom = $r->input('nom');
         $type->heureDebut = $r->input('heureDebut');
         $type->heureFin = $r->input('heureFin');
-        $type->save();
-
-        return view('/type/create')->with('success', 'Type ajouté avec succès');
+        $type->save(); */
+         $semaine = new Semaine;
+         $semaine->user_id = $user->id;
+         $semaine->typeSemaine = $request->input('typeSemaine');
+         $semaine->dateSemaine = $request->input('dateSemaine');
+         $semaine->save();
+     }
+     return view('semaine/create');
     }
 
     /**
@@ -51,7 +62,7 @@ class TypeController extends Controller
      */
     public function show($id)
     {
-        return view('type.show', ['type' => Type::findOrFail($id)]);
+        //
     }
 
     /**
@@ -62,8 +73,7 @@ class TypeController extends Controller
      */
     public function edit($id)
     {
-        $type = Type::findOrFail($id);
-        return view('type/edit', ['type' => $type]);
+        //
     }
 
     /**
@@ -73,10 +83,9 @@ class TypeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(TypeRdvRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        Type::where('id', $id)->update($request->except('_token', '_method'));
-        return redirect('type/')->with('success', 'Type modifié');
+        //
     }
 
     /**
@@ -87,8 +96,6 @@ class TypeController extends Controller
      */
     public function destroy($id)
     {
-        $type = Type::find($id);
-        $type->delete();
-        return redirect('/type')->with('success', 'Type supprimé');
+        //
     }
 }

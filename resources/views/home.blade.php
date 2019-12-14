@@ -14,6 +14,7 @@
             <a class="btn btn-success p-3 mt-2" href="{{url('rdv')}}">Voir liste des rendez-vous</a>
             <a class="btn btn-success p-3 mt-2" href="{{url('calendrier')}}">Accéder au calendrier</a>
             <a class="btn btn-primary p-3 mt-2" href="{{url('type')}}">Gérer les types</a>
+            <a class="btn btn-warning p-3 mt-2" href="{{url('semaine/create')}}">Gérer la semaine</a>
             </form>
 </div>
 @endsection
