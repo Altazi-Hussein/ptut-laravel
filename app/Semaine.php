@@ -15,4 +15,9 @@ class Semaine extends Model
     protected $fillable = [
         'typeSemaine', 'dateSemaine'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

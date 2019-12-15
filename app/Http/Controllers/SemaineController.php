@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\{User, Semaine};
 use Auth;
+use Carbon\Carbon;
 
 class SemaineController extends Controller
 {
@@ -15,7 +16,10 @@ class SemaineController extends Controller
      */
     public function index()
     {
-        //
+        $now = Carbon::now();
+        $currentWeek = $now->year . "-W" . $now->week;
+        $semaines = Semaine::all()->where('dateSemaine', $currentWeek);
+        return view('semaine/index', ['semaines' => $semaines, 'now' => $now, 'currentWeek' => $currentWeek]);
     }
 
     /**
@@ -37,23 +41,17 @@ class SemaineController extends Controller
      */
     public function store(Request $request)
     {
-    $users = User::all();
-    foreach ($users as $user)
-     {
-        /* $type = new Type;
-        $type->nom = $r->input('nom');
-        $type->heureDebut = $r->input('heureDebut');
-        $type->heureFin = $r->input('heureFin');
-        $type->save(); */
-         $semaine = new Semaine;
-         $semaine->user_id = $user->id;
-         $semaine->typeSemaine = $request->input('typeSemaine');
-         $semaine->dateSemaine = $request->input('dateSemaine');
-         $semaine->save();
-     }
-     return view('semaine/create');
+        foreach ($request->input('typeSemaine') as $user => $typeSemaine) {
+            $semaine = new Semaine;
+            $semaine->user_id = $user;
+            $semaine->typeSemaine = $typeSemaine;
+            $semaine->dateSemaine = $request->input('dateSemaine');
+            $semaine->save();
+        }
+        return redirect('semaine/create')->with('success', 'Semaine créée avec succès');
     }
 
+        
     /**
      * Display the specified resource.
      *
