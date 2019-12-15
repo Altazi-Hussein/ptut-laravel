@@ -37,21 +37,15 @@ class SemaineController extends Controller
      */
     public function store(Request $request)
     {
-    $users = User::all();
-    foreach ($users as $user)
-     {
-        /* $type = new Type;
-        $type->nom = $r->input('nom');
-        $type->heureDebut = $r->input('heureDebut');
-        $type->heureFin = $r->input('heureFin');
-        $type->save(); */
-         $semaine = new Semaine;
-         $semaine->user_id = $user->id;
-         $semaine->typeSemaine = $request->input('typeSemaine');
-         $semaine->dateSemaine = $request->input('dateSemaine');
-         $semaine->save();
-     }
-     return view('semaine/create');
+        foreach ($request->input('typeSemaine') as $user => $typeSemaine) {
+            $semaine = new Semaine;
+            $semaine->user_id = $user;
+            $semaine->typeSemaine = $typeSemaine;
+            $semaine->dateSemaine = $request->input('dateSemaine');
+            $semaine->save();
+        }
+
+        return view('semaine/create');
     }
 
     /**

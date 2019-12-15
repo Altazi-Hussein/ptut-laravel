@@ -41,7 +41,7 @@ class RdvController extends Controller
     //Création d'un nouveau RDV via un patient existant
     public function store(Request $r)
     {
-        $typeRdvRequest = $r->validate([
+        $r->validate([
             'styleDeRDV' => 'required'
         ]);
         $rdv = new Rdv;
