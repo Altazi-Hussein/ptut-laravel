@@ -57,7 +57,7 @@
         <input type="submit" class="btn btn-success mt-2 float-right">   
 </form>
 
-<a class="btn btn-primary mt-2" href="{{ route('type.index') }}">Voir toutes les semaines</a>
+<a class="btn btn-primary mt-2" href="{{ route('semaine.index') }}">Voir toutes les semaines</a>
 </div>
 @endif
     <a class="btn btn-primary" href="{{ URL::previous() }}">Retour</a>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\{User, Semaine};
 use Auth;
+use Carbon\Carbon;
 
 class SemaineController extends Controller
 {
@@ -15,7 +16,10 @@ class SemaineController extends Controller
      */
     public function index()
     {
-        //
+        $now = Carbon::now();
+        $currentWeek = $now->year . "-W" . $now->week;
+        $semaines = Semaine::all()->where('dateSemaine', $currentWeek);
+        return view('semaine/index', ['semaines' => $semaines, 'now' => $now, 'currentWeek' => $currentWeek]);
     }
 
     /**
@@ -44,10 +48,10 @@ class SemaineController extends Controller
             $semaine->dateSemaine = $request->input('dateSemaine');
             $semaine->save();
         }
-
-        return redirect('semaine/create')->with('success', 'Rendez-vous ajouté avec succès !');
+        return redirect('semaine/create')->with('success', 'Semaine créée avec succès');
     }
 
+        
     /**
      * Display the specified resource.
      *
