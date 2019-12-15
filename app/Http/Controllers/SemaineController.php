@@ -45,7 +45,7 @@ class SemaineController extends Controller
             $semaine->save();
         }
 
-        return view('semaine/create');
+        return redirect('semaine/create')->with('success', 'Rendez-vous ajouté avec succès !');
     }
 
     /**
