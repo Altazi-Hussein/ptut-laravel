@@ -12,7 +12,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         factory(App\Patient::class, 80)->create();
-        factory(App\User::class, 80)->create();
+        factory(App\User::class, 10)->create();
         $this->call(TypeTableSeeder::class);
         factory(App\Rdv::class, 80)->create();
     }

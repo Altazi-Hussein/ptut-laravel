@@ -18,6 +18,7 @@
         </form>
 =======
             <a class="btn btn-primary p-3 mt-2" href="{{url('type')}}">Gérer les types</a>
+            <a class="btn btn-warning p-3 mt-2" href="{{url('semaine/create')}}">Gérer la semaine</a>
             </form>
 >>>>>>> cc3b382cc2712e3b727ef0473b636203131222f7
 </div>

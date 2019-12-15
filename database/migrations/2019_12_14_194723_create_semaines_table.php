@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTypeTable extends Migration
+class CreateSemainesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateTypeTable extends Migration
      */
     public function up()
     {
-        Schema::create('types', function (Blueprint $table) {
+        Schema::create('semaines', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nom');
-            $table->time('heureDebut')->nullable();
-            $table->time('heureFin')->nullable();
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->string('typeSemaine', 15);
+            $table->string('dateSemaine');
+            $table->foreign('user_id')->references('id')->on('users')->ondelete('cascade');
         });
     }
 
@@ -28,6 +29,6 @@ class CreateTypeTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('types');
+        Schema::dropIfExists('semaines');
     }
 }

@@ -16,6 +16,11 @@ class CreatePatientsTable extends Migration
         Schema::create('patients', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('firstName', 50);
+            $table->string('pathologie', 50)->nullable();
+            $table->string('typeDeSoin', 50)->nullable();
+            $table->string('adresse', 100)->nullable();
+            $table->string('complementAdresse', 50)->nullable();
+            $table->integer('telephone')->nullable();
             $table->string('lastName', 50);
         });
     }
