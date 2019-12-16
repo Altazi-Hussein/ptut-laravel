@@ -32,6 +32,7 @@ Route::resources([
 	'calendrier' => 'CalendrierController',
 	'type' => 'TypeController',
 	'semaine' => 'SemaineController',
+	'generation' => 'GenerationController',
 ]);
 
 Route::get('rdv/{id}', 'RdvController@show');
@@ -42,8 +43,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 //calendar
 Route::post('calendrier_ajax_update', ['uses' => 'CalendrierController@ajaxUpdate', 'as' => 'calendrier.ajax_update']);
 
-//génération
-Route::resource('/generation', 'GenerationController');
 
 //Search
 Route::get('/search', 'SearchController@index');

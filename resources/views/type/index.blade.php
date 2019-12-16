@@ -3,10 +3,6 @@
 @section('titleContent', 'Liste des rendez-vous')
 
 @section('content')
-{{-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
- --}}
 
 <div class="card-body" style="">
     @if(Auth::check())
@@ -44,7 +40,6 @@
                         <form action="{{route('type.edit', $type['id']) }}" method="GET">
                                  @csrf
                                  <button type="submit" class="btn btn-warning btn-sm m-1">
-                                       <span class="glyphicon glyphicon-edit"></span>
                                        <i class="far fa-trash-alt"></i> 
                                  </button>
                                  
@@ -53,7 +48,7 @@
                            @csrf
                            @method('DELETE')
                            <button onclick="return confirm('Supprimer ce type?')" type="submit" class="btn btn-danger btn-sm m-1">
-                                 <span class="glyphicon glyphicon-trash"></span> 
+                              <i class="far fa-edit"></i>
                            </button>
                        </form>
                      </td>

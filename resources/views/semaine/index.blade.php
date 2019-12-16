@@ -36,7 +36,7 @@
             </thead>
          </table>         
          {{-- Ligne pour les boutons <-Précédent-Suivant-> --}}
-         <a class="btn btn-success float-right" href="{{url('type/create')}}">Configurer nouvelle semaine</a>
+         <a class="btn btn-success float-right" href="{{url('semaine/create')}}">Configurer nouvelle semaine</a>
          {{--<ul> 
         @foreach ($rdvs as $rdv)
        <li>{{ $rdv }} {{--<a href="{{ route('rdv.show', ['id'=>$rdv->id]) }}">Afficher</a></li>
