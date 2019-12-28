@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use App\Type;
 
 class GenerationController extends Controller
 {
@@ -23,47 +24,63 @@ class GenerationController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
-    {
-        //On sélectionne les RDV prioritaires (7h) 
-        $type7h = DB::table('types')->where('heureDebut', '=', '07:00:00')->pluck('id');
-        $type7h = $type7h->all(); 
-        
+    {   
+        $infG = 1;
+        $nbToilettesG = 0;
+        $infP = 2;
+        $nbToilettesP = 0;
 
-        $rdvs7h = collect();
-        foreach($type7h as $t)
-        {
-            $rdvs7h->push(DB::select([$t])->all());
+        //On sélectionne les rdv commençant à 7h
+        $types7h = Type::where('heureDebut', '=', '07:00:00')->get();
+        foreach($types7h as $t){
+            $r = $t->rdvs;
+            foreach($r as $temp){
+              $rdvs7h[] = $temp;
+          }
         }
-        $rdvs7h->all();
-        print_r($rdvs7h);
 
         //On sélectionne les toilettes et les pansements(10h)
-        $type10h = DB::table('types')->where('heureDebut', '=', '10:00:00')->pluck('id');
-        $type10h = $type10h->all();
-       
-    
-        $rdvs10h = collect();
-        foreach($type10h as $t)
-        {
-            $rdvs10h->push(DB::select([$t])->all());
+        $types10h = Type::where('heureDebut', '=', '10:00:00')->get();
+        foreach($types10h as $t){
+            $r = $t->rdvs;
+            foreach($r as $temp){
+              $rdvs10h[] = $temp;
+          }
         }
-        $rdvs10h->all();
-
+        
+        
         //On calcule la moitié du nombre de toilettes pour les équilibrer plus tard
         $moitieToilette = count($rdvs10h)/2;
 
-        /*foreach($rdvs7h as $rdv)
+        foreach($rdvs10h as $rdv)
         {
             $a = true; 
             if($a== true) //Inf grosse semaine
             {
-                if($rdv->type != )
-                affecter($rdv->id,  )
+                if($rdv->type != 6 || $nbToilettesG < $moitieToilette)  // /!\Pas dynamique car on rentre le type en dur
+                {
+                    affecter($rdv->id, $infG);
+                    if($rdv->type == 6){$nbToiletteG++;} //Si c'est une toilette, on incrémente le nombre de toilettes
+                }
+                a = false;
             }
-        }*/
+            
+            else //Inf petite semaine
+            {
+                if($rdv->type != 6 || $nbToilettesP < $moitieToilette)
+                {
+                    affecter($rdv->id, $infP);
+                    if($rdv->type == 6){$nbToiletteP++;} //Si c'est une toilette, on incrémente le nombre de toilettes
+                }
+                a = true;
+            }
+        }
         
         
-        //return view('generation', ['rdvs7h'=>$rdvs7h, 'rdvs10h' => $rdvs10h]);
+        return view('generation', ['rdvs7h'=>$rdvs7h, 'rdvs10h' => $rdvs10h]);
+        
+        
+        
 
     }
 

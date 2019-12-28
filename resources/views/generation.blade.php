@@ -1,8 +1,9 @@
 @extends('layouts.app')
 @section('content')
     @if(Auth::check())
+        {{count($rdvs7h)}}
         @foreach($rdvs7h as $rdv)
-    {{ /*$rdv->patient_id */}}
+   
         @endforeach
     @else
        {{"Vous n'êtes pas connecté !"}}
