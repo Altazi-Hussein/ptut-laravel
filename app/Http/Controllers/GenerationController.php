@@ -62,7 +62,7 @@ class GenerationController extends Controller
                     affecter($rdv->id, $infG);
                     if($rdv->type == 6){$nbToiletteG++;} //Si c'est une toilette, on incrémente le nombre de toilettes
                 }
-                a = false;
+                $a = false;
             }
             
             else //Inf petite semaine
@@ -72,7 +72,7 @@ class GenerationController extends Controller
                     affecter($rdv->id, $infP);
                     if($rdv->type == 6){$nbToiletteP++;} //Si c'est une toilette, on incrémente le nombre de toilettes
                 }
-                a = true;
+                $a = true;
             }
         }
         
