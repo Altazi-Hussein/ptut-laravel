@@ -18,7 +18,7 @@ class CreateRdvsTable extends Migration
             $table->unsignedBigInteger('type_id');
             $table->unsignedBigInteger('patient_id')->nullable();
             $table->unsignedBigInteger('user_id')->nullable();
-
+            $table->string('ville')->nullable();
             $table->datetime('start_time')->nullable();
             $table->datetime('finish_time')->nullable();
             $table->text('comment')->nullable();

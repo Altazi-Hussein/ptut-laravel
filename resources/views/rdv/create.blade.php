@@ -49,6 +49,17 @@
                         <option value="{{ $type->id }}">{{ $type->nom}}</option>
                     @endforeach
                 </select>
+
+                <label class="col-form-label text-md-right mb-2" for="raison">
+                    {{ __('Ville du rendez-vous') }}
+                </label>
+                {{-- On affiche toutes les villes des secteurs --}}
+                <select name="secteur" id="secteur" class="form-control mb-2">
+                    @foreach ($secteurs as $secteur)
+                        <option value="{{ $secteur->id }}">{{ $secteur->ville}}</option>
+                    @endforeach
+                </select>
+
                 <div class='btn-group btn-group-toggle d-flex justify-content-center' data-toggle='buttons'>
                     <label class='btn btn-secondary' id="buttoncreationPatient">
                         <input type="radio" name="demo" value="creationPatient" checked/> Créer un patient

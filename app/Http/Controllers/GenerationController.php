@@ -13,6 +13,9 @@ class GenerationController extends Controller
      *
      * @return void
      */
+    private $secteur1 = array("bramans" => 1, "aussois" => 2, "avrieux" =>3 , "villarodin" => 4, "bourget" => 5, "modane" =>6 );
+    private $secteur2 = array("la praz"=> 1, "saint andré" =>2 , "freney" => 3, "fourneaux" => 4);
+
     public function __construct()
     {
         $this->middleware('auth');
@@ -25,9 +28,11 @@ class GenerationController extends Controller
      */
     public function index()
     {   
-        $infG = 1;
+        $infG = 1; //Secteur 1
+        $departInfG=$secteur1["bramans"];
         $nbToilettesG = 0;
-        $infP = 2;
+        $infP = 2; //Secteur 2
+        $departInfP=$secteur1["la praz"];
         $nbToilettesP = 0;
 
         //On sélectionne les rdv commençant à 7h

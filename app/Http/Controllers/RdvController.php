@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\{User, Rdv, Patient, Type};
+use App\{User, Rdv, Patient, Type, Secteur};
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Http\Request;
@@ -34,7 +34,9 @@ class RdvController extends Controller
     {
 
         $types = Type::all();
-        return view('rdv/create', ['types' => $types]);
+        $secteurs = Secteur::all();
+
+        return view('rdv/create', ['types' => $types,'secteurs'=>$secteurs]);
     }
     
     
@@ -59,6 +61,7 @@ class RdvController extends Controller
             $rdv->type_id = $r->input('type');
             $rdv->patient_id = $patient->id;
         }
+        $rdv->ville = $r->input('secteur');
         $rdv->user_id = Auth::id();
         $rdv->save();
 
