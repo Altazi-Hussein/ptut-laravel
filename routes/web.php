@@ -29,18 +29,17 @@ Route::post('ajoutRdv', ['uses' => 'RdvController@postForm', 'as' => 'rdvEnregis
 
 Route::resources([
 	'rdv' => 'RdvController',
-	'calendrier' => 'CalendrierController',
 	'type' => 'TypeController',
 	'semaine' => 'SemaineController',
 	'generation' => 'GenerationController',
 ]);
 
-Route::get('rdv/{id}', 'RdvController@show');
 
 Route::get('rdv/storeResultat', 'RdvController@storeResultat');
 Route::get('/home', 'HomeController@index')->name('home');
 
 //calendar
+Route::get('calendrier/{id?}', 'CalendrierController@index')->where('id', '[0-9]+');
 Route::post('calendrier_ajax_update', ['uses' => 'CalendrierController@ajaxUpdate', 'as' => 'calendrier.ajax_update']);
 
 

@@ -40,7 +40,7 @@
                         <form action="{{route('type.edit', $type['id']) }}" method="GET">
                                  @csrf
                                  <button type="submit" class="btn btn-warning btn-sm m-1">
-                                       <i class="far fa-trash-alt"></i> 
+                                    <i class="far fa-edit"></i>
                                  </button>
                                  
                         </form>
@@ -48,7 +48,7 @@
                            @csrf
                            @method('DELETE')
                            <button onclick="return confirm('Supprimer ce type?')" type="submit" class="btn btn-danger btn-sm m-1">
-                              <i class="far fa-edit"></i>
+                              <i class="far fa-trash-alt"></i> 
                            </button>
                        </form>
                      </td>

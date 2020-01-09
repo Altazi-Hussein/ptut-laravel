@@ -41,20 +41,17 @@
                      <td class="text-center">Personne</td>
                      @endif
                      <td class="text-center d-flex">
-                           {{-- <a class="btn btn-warning btn-sm m-1" href="{{url('type/create')}}">
-                              <span class="glyphicon glyphicon-edit"></span>
-                           </a> --}}
                         <form action="{{route('rdv.edit', $rdv['id']) }}" method="GET">
                                  @csrf
                                  <button type="submit" class="btn btn-warning btn-sm m-1">
-                                       <span class="glyphicon glyphicon-edit"></span> 
+                                    <i class="far fa-edit"></i> 
                                  </button>
                         </form>
                         <form action="{{route('rdv.destroy', $rdv['id']) }}" method="POST">
                            @csrf
                            @method('DELETE')
                            <button onclick="return confirm('Supprimer ce rendez-vous?')" type="submit" class="btn btn-danger btn-sm m-1">
-                                 <span class="glyphicon glyphicon-trash"></span> 
+                              <i class="far fa-trash-alt"></i> 
                            </button>
                        </form>
                      </td>
@@ -64,15 +61,8 @@
                </tbody>
             </thead>
          </table>         
-         {{-- Ligne pour les boutons <-Précédent-Suivant-> --}}
          <a class="btn btn-success p-3 mt-2 float-right" href="{{url('rdv/create')}}">Ajouter un rendez-vous</a>
          <div class="float-left">{{ $rdvs->links()}}</div>
-       {{--<ul> 
-        @foreach ($rdvs as $rdv)
-       <li>{{ $rdv }} {{--<a href="{{ route('rdv.show', ['id'=>$rdv->id]) }}">Afficher</a></li>
-        @endforeach
-       </ul>
-       {{ $rdvs->links()}}--}}
     @endisset
     @else
        {{"Vous n'êtes pas connecté !"}}
