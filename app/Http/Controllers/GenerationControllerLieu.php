@@ -44,8 +44,6 @@ class GenerationController extends Controller
           }
         }
 
-        $tousRdvVille = Rdv::->where('heure=7h' && (ville = 1 order by id asc))
-
         //On sélectionne les toilettes et les pansements(10h)
         $types10h = Type::where('heureDebut', '=', '10:00:00')->get();
         foreach($types10h as $t){
