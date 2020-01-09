@@ -3,24 +3,30 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Rdv;
+//use Illuminate\Support\Facades\Validator;
+use Auth;
+use App\{User, Rdv};
 
 class CalendrierController extends Controller
 {
-    public function index()
+    public function index($id = null)
     {
-        $rdvs = Rdv::all();
-        return view('beta/calendrier', compact('rdvs'));
+        
+        if($id === null){
+            $rdvs = Auth::user()->rdvs;
+        }
+        else{
+            $rdvs = Rdv::where('user_id', $id); 
+        }
+        $users = User::all();
+        return view('beta/calendrier', ['rdvs' => $rdvs, 'users' => $users]);
     }
+
     public function ajaxUpdate(Request $request)
     {
         $rdv = Rdv::with('patient')->findOrFail($request->rdv);
         $rdv->update($request->all());
 
         return response()->json(['rdv' => $rdv]);
-    }
-    public function show()
-    {
-        return view('beta/index');
     }
 }
