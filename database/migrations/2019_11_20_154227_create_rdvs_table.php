@@ -22,6 +22,7 @@ class CreateRdvsTable extends Migration
             $table->datetime('start_time')->nullable();
             $table->datetime('finish_time')->nullable();
             $table->text('comment')->nullable();
+            $table->integer('ordre')->nullable();
 
             $table->foreign('patient_id')->references('id')->on('patients')->ondelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->ondelete('cascade');
