@@ -116,3 +116,4 @@ class GenerationController extends Controller
         
 
     }
+}
