@@ -70,6 +70,8 @@ class GenerationController extends Controller
         $moitieToilettes = $nbToilette/2;
         echo $nbToilette;
         echo "a".$moitieToilettes;
+        
+        //Affectation des RDV du matin
         $a = true;
         foreach ($rdvsMatin as $tabRdv) {
             foreach($tabRdv as $rdv)
@@ -95,6 +97,15 @@ class GenerationController extends Controller
                     }
                     $a = true;
                 }
+            }
+        }
+
+        //Affectation des RDV de l'après midi
+        foreach($rdvsAprem as $tabRdv)
+        {
+            foreach($tabRdv as $rdv)
+            {
+                GenerationController::affecter($rdv, $infG);
             }
         }
         echo "a".$nbToilettesG;
