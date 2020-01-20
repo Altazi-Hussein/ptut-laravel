@@ -31,10 +31,10 @@ Route::resources([
 	'rdv' => 'RdvController',
 	'type' => 'TypeController',
 	'semaine' => 'SemaineController',
-	'generation' => 'GenerationController',
 ]);
 
-Route::resource('generation', 'GenerationController@index');
+Route::get('generation', 'GenerationController@index');
+Route::get('generation/view', 'GenerationController@affichage');
 Route::get('rdv/storeResultat', 'RdvController@storeResultat');
 Route::get('/home', 'HomeController@index')->name('home');
 

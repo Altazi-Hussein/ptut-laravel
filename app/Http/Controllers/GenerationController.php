@@ -9,24 +9,28 @@ use DateTime;
 
 class GenerationController extends Controller
 {
+    public $infP;
+    public $infG; 
+
     /**
      * Create a new controller instance.
      *
      * @return void
      */
     
-    private $secteur1 = array( 1 =>"bramans", 2 =>"aussois", 3 => "avrieux", 4 =>"villarodin", 5 =>"bourget", 6 =>"modane" );
-    private $secteur2 = array( 1 =>"la praz",2 =>"saint andré", 3 =>"freney",  4 =>"fourneaux");
+     
     public function __construct()
     {
+        $this->infG = User::where('id', '=','1')->first();
+        $this->infP = User::where('id', '=','2')->first();
         $this->middleware('auth');
     }
-    public static function affecter(Rdv $rdv, User $user)
+    public static function affecter(Rdv $rdv, User $user, $indexOrdre)
     {
         $date = new DateTime('tomorrow');
         //DB::update('update rdvs set user_id = ?, start_time = ? where id = $idRDV', [$idUser, $date, $idRDV]);
         //$rdv->update(['user_id' => $user->id, 'start_time' => $date]); 
-        DB::table('rdvs')->where('id',$rdv->id)->update(['user_id' => $user->id, 'start_time' => $date]);
+        DB::table('rdvs')->where('id',$rdv->id)->update(['user_id' => $user->id, 'start_time' => $date, 'ordre'=> $indexOrdre]);
     }
     /**
      * Show the application dashboard.
@@ -34,10 +38,13 @@ class GenerationController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
-    {   
-        $infG = User::where('id', '=','12')->first();
+    {  
+        $secteur1 = array( 1 =>"bramans", 2 =>"aussois", 3 => "avrieux", 4 =>"villarodin", 5 =>"bourget", 6 =>"modane" );
+        $secteur2 = array( 1 =>"la praz",2 =>"saint andré", 3 =>"freney",  4 =>"fourneaux");
+        $indexOrdre = 0; //ordre d'affectation des RDV
+        
         $nbToilettesG = 0;
-        $infP = User::where('id', '=','13')->first();
+        
         $nbToilettesP = 0;
         $nbToilette = 0;
         $departInfG=$secteur1[1];
@@ -87,7 +94,8 @@ class GenerationController extends Controller
                 {
                     if(($rdv->type->nom != "Toilettes") || ($rdv->type->nom == "Toilettes" && $nbToilettesG < $moitieToilettes))  
                     {
-                        GenerationController::affecter($rdv, $infG);
+                        GenerationController::affecter($rdv, $this->infG, $indexOrdre);
+                        $indexOrdre++;
                         if($rdv->type->nom == "Toilettes"){$nbToilettesG++;} //Si c'est une toilette, on incrémente le nombre de toilettes
                     }
                     $a = false;
@@ -98,7 +106,8 @@ class GenerationController extends Controller
                     
                     if(($rdv->type->nom != "Toilettes") || ($rdv->type->nom == "Toilettes" && $nbToilettesG < $moitieToilettes))
                     {
-                        GenerationController::affecter($rdv, $infP);
+                        GenerationController::affecter($rdv, $this->infP, $indexOrdre);
+                        $indexOrdre++;
                         if($rdv->type->nom == "Toilettes"){$nbToilettesP++;} //Si c'est une toilette, on incrémente le nombre de toilettes
                     }
                     $a = true;
@@ -111,15 +120,21 @@ class GenerationController extends Controller
         {
             foreach($tabRdv as $rdv)
             {
-                GenerationController::affecter($rdv, $infG);
+                GenerationController::affecter($rdv, $this->infG, $indexOrdre);
+                $indexOrdre++;
             }
         }
         echo "a".$nbToilettesG;
         echo "a".$nbToilettesP;
-        return view('generation');
-        
-        
-        
+        return redirect('/generation/view');
+    }
 
+    public function affichage()
+    {
+        $rdvsP = $this->infP->rdvs;
+        $rdvsG = $this->infG->rdvs;
+        //$comment = App\Post::find(1)->comments()->where('title', 'foo')->first();
+        //Recup les patients 
+        return view('planning', ['rdvsP'=> $rdvsP, 'rdvsG'=>$rdvsG]); //Donner les patients au lieu des RDV
     }
 }
