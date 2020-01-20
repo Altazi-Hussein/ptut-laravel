@@ -14,9 +14,9 @@ class GenerationController extends Controller
      *
      * @return void
      */
-    private $secteur1 = array("bramans" => 1, "aussois" => 2, "avrieux" =>3 , "villarodin" => 4, "bourget" => 5, "modane" =>6 );
-    private $secteur2 = array("la praz"=> 1, "saint andré" =>2 , "freney" => 3, "fourneaux" => 4);
-
+    
+    private $secteur1 = array( 1 =>"bramans", 2 =>"aussois", 3 => "avrieux", 4 =>"villarodin", 5 =>"bourget", 6 =>"modane" );
+    private $secteur2 = array( 1 =>"la praz",2 =>"saint andré", 3 =>"freney",  4 =>"fourneaux");
     public function __construct()
     {
         $this->middleware('auth');
@@ -40,8 +40,9 @@ class GenerationController extends Controller
         $infP = User::where('id', '=','13')->first();
         $nbToilettesP = 0;
         $nbToilette = 0;
-        $departInfG=$secteur1["bramans"];
-        $departInfP=$secteur1["la praz"];
+        $departInfG=$secteur1[1];
+        $departInfP=$secteur2[1];
+        
         //On sélectionne les rdv commençant à 7h
         /*$types7h = Type::where('heureDebut', '=', '07:00:00')->get();
         foreach($types7h as $t){
