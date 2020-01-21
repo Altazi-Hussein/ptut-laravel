@@ -135,6 +135,13 @@ class GenerationController extends Controller
         $rdvsG = $this->infG->rdvs;
         //$comment = App\Post::find(1)->comments()->where('title', 'foo')->first();
         //Recup les patients 
-        return view('planning', ['rdvsP'=> $rdvsP, 'rdvsG'=>$rdvsG]); //Donner les patients au lieu des RDV
+        return view('planning', ['rdvsP'=> $rdvsP, 'rdvsG'=>$rdvsG, 'infP' => $this->infP, 'infG' => $this->infG]); //Donner les patients au lieu des RDV
+    }
+
+    public function update(Request $r)
+    {
+        $rdv = Rdv::where('id', $r->id)->update(array('fait' => 1));
+        $rdv =Rdv::where('id', $r->id)->first();
+        return redirect()->route('planning');
     }
 }

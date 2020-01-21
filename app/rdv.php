@@ -38,4 +38,9 @@ class Rdv extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function ville()
+    {
+        return $this->belongsTo(Secteur::class);
+    }
 }

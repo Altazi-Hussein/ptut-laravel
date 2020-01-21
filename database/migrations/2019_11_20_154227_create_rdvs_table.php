@@ -18,12 +18,13 @@ class CreateRdvsTable extends Migration
             $table->unsignedBigInteger('type_id');
             $table->unsignedBigInteger('patient_id')->nullable();
             $table->unsignedBigInteger('user_id')->nullable();
-            $table->string('ville')->nullable();
+            $table->unsignedBigInteger('ville_id')->nullable();
             $table->datetime('start_time')->nullable();
             $table->datetime('finish_time')->nullable();
             $table->text('comment')->nullable();
             $table->integer('ordre')->nullable();
             $table->boolean('fait');
+            $table->foreign('ville_id')->references('id')->on('secteur')->ondelete('cascade');
             $table->foreign('patient_id')->references('id')->on('patients')->ondelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->ondelete('cascade');
             $table->foreign('type_id')->references('id')->on('types')->ondelete('cascade');

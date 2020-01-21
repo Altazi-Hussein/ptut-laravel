@@ -34,7 +34,8 @@ Route::resources([
 ]);
 
 Route::get('generation', 'GenerationController@index');
-Route::get('generation/view', 'GenerationController@affichage');
+Route::get('generation/view', 'GenerationController@affichage')->name('planning');
+Route::get('generation/valider', 'GenerationController@update')->name('generation.valider');
 Route::get('rdv/storeResultat', 'RdvController@storeResultat');
 Route::get('/home', 'HomeController@index')->name('home');
 
