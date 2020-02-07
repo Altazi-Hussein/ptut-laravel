@@ -16,23 +16,37 @@ Une fois tous les rendez-vous de toutes les infirmières travaillant le lendemai
 ## Stade d'avancement du projet
 
 Le projet n'ayant pour vocation de n'être qu'une première ébauche de ce à quoi ressemblerait une telle application fonctionnelle, le groupe réalisant ce projet s'est chargé d'implémenter en priorité toutes les fonctionnalités les plus essentielles soumises par les infirmières lors de la réalisation du cahier des charges, à savoir:
-    • Possibilité de s'inscrire/se connecter pour une infirmière.
-    • Gérer les rendez-vous (créer, voir, supprimer, éditer, modifier certains éléments spécifiques, changer le type).
-    • Pouvoir gérer les motifs de rendez-vous spécifiques (Prise de sang, toilettes, définir les horaires maximum, etc...).
-    • Pourvoir éditer/modifier/supprimer ces types selon les législations relatives (définies selon le code national de ce type de    rendez-vous).
-    • Gestion de l'affichage des rendez-vous d'une infirmière de tournée pour un jour/semaine donnée.
-    • Mise en place de la base de données et des migrations nécessaires.
-    • Implémentation d'une première version de l'algorithme de répartition prenant en compte les infirmières en tournée pour le jour suivant selon les rendez-vous à effectuer.
-    • Point important: la charte graphique et l'ergonomie du site avait pour condition d'être intuitive et facile d'utilisation pour un groupe d'infirmières novices en informatique. Bien que la version actuelle n'ait pas pour vocation d'être déployée, la charte graphique fut mise en place par Ali Hussein (front-end), en vue d'avoir une idée globale de l'ergonomie voulue par les infirmières.
+
+• Possibilité de s'inscrire/se connecter pour une infirmière.
+
+• Gérer les rendez-vous (créer, voir, supprimer, éditer, modifier certains éléments spécifiques, changer le type).
+
+• Pouvoir gérer les motifs de rendez-vous spécifiques (Prise de sang, toilettes, définir les horaires maximum, etc...).
+
+• Pouvoir éditer/modifier/supprimer ces types selon les législations relatives (définies selon le code national de ce type de    rendez-vous).
+
+• Gestion de l'affichage des rendez-vous d'une infirmière de tournée pour un jour/semaine donnée.
+
+• Mise en place de la base de données et des migrations nécessaires.
+
+• Implémentation d'une première version de l'algorithme de répartition prenant en compte les infirmières en tournée pour le jour suivant 
+selon les rendez-vous à effectuer.
+
+• Point important: la charte graphique et l'ergonomie du site avait pour condition d'être intuitive et facile d'utilisation pour un groupe d'infirmières novices en informatique. Bien que la version actuelle n'ait pas pour vocation d'être déployée, la charte graphique fut mise en place par Ali Hussein (front-end), en vue d'avoir une idée globale de l'ergonomie voulue par les infirmières.
     
 ## Membres du groupe
 
 Ce projet fut réalisé par un groupe d'étudiants à l'IUT Informatique Lyon 1:
     HUSSEIN Ali
+    
     DO ESPIRITO SANTO Valentin
+    
     MACE Lucas
+    
     PEREZ Hugo
+    
     SERPOLLIER Rémi
+    
     
 Rédaction: HUSSEIN Ali.
     
