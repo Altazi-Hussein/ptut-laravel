@@ -37,6 +37,7 @@ selon les rendez-vous à effectuer.
 ## Membres du groupe
 
 Ce projet fut réalisé par un groupe d'étudiants à l'IUT Informatique Lyon 1:
+
     HUSSEIN Ali
     
     DO ESPIRITO SANTO Valentin
