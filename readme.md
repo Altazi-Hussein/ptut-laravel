@@ -1,72 +1,39 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+## Introduction du projet
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+Le projet fait référence à notre projet tutoré de DUT Informatique.
+Il s'agit d'un cas réel dans lequel un cabinet d'infirmière cherche un moyen d'optimiser et de simplifier la gestion, l'ordre, la modification, et l'organisation générale du cabinet et des rendez-vous, en vue d'avoir une meilleure coordination globale.
 
-## About Laravel
+## Comment fonctionne l'application
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+L'idée est de réaliser une application Web grâce à laquelle chaque infirmière peut accéder à son interface, saisir les rendez-vous qu'elle doit réaliser,  les contraintes liées à ce rendez-vous, et ainsi mieux gérer ces derniers dans la semaine.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Puisque toutes les infirmières possèdent chacune des horaires spécifiques (travail seulement matin, ou matin/après-midi, parfois Week-end, etc...), il faut également prendre en compte ces contraintes.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+De plus, les types des rendez-vous imposent des contraintes de temps selon leur caractéristiques (les prises de sang ne doivent être réalisées que le matin par exemple, de même pour les toilettes qui possèdent une limite de temps).
 
-## Learning Laravel
+Une fois tous les rendez-vous de toutes les infirmières travaillant le lendemain insérés, un algorithme s'occupe de gérer la répartition de ces derniers pour chaque infirmière en cherchant à optimiser au maximum les trajets qu'elles effectueront (selon la localisation de chaque rendez-vous et les contraintes liées à ceux-ci).
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Stade d'avancement du projet
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Le projet n'ayant pour vocation de n'être qu'une première ébauche de ce à quoi ressemblerait une telle application fonctionnelle, le groupe réalisant ce projet s'est chargé d'implémenter en priorité toutes les fonctionnalités les plus essentielles soumises par les infirmières lors de la réalisation du cahier des charges, à savoir:
+    • Possibilité de s'inscrire/se connecter pour une infirmière.
+    • Gérer les rendez-vous (créer, voir, supprimer, éditer, modifier certains éléments spécifiques, changer le type).
+    • Pouvoir gérer les motifs de rendez-vous spécifiques (Prise de sang, toilettes, définir les horaires maximum, etc...).
+    • Pourvoir éditer/modifier/supprimer ces types selon les législations relatives (définies selon le code national de ce type de    rendez-vous).
+    • Gestion de l'affichage des rendez-vous d'une infirmière de tournée pour un jour/semaine donnée.
+    • Mise en place de la base de données et des migrations nécessaires.
+    • Implémentation d'une première version de l'algorithme de répartition prenant en compte les infirmières en tournée pour le jour suivant selon les rendez-vous à effectuer.
+    • Point important: la charte graphique et l'ergonomie du site avait pour condition d'être intuitive et facile d'utilisation pour un groupe d'infirmières novices en informatique. Bien que la version actuelle n'ait pas pour vocation d'être déployée, la charte graphique fut mise en place par Ali Hussein (front-end), en vue d'avoir une idée globale de l'ergonomie voulue par les infirmières.
+    
+## Membres du groupe
 
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-source software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Ce projet fut réalisé par un groupe d'étudiants à l'IUT Informatique Lyon 1:
+    HUSSEIN Ali
+    DO ESPIRITO SANTO Valentin
+    MACE Lucas
+    PEREZ Hugo
+    SERPOLLIER Rémi
+    
+Rédaction: HUSSEIN Ali.
+    
+    
